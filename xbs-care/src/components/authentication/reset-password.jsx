@@ -20,13 +20,16 @@ import '../assets/css/image.css'
 import { BasicTextField } from '../input-fields/basic-text-field';
 import BasicButton from "../buttons/basic-button";
 import { PasswordField } from "../input-fields/password-text-field.jsx";
-
-
-export default function ForgotPassword() {
+export default function ResetPassword() {
     const navigate = useNavigate();
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');  
+  const [tempPass,setTemppass] = useState('');
+  const [newPass,setNewppass] = useState('');
+  const [confirmPass,setCOnfirmpass] = useState('');
+
+  
   const handleButtonClick = () => {
+
+
   };
   const handleBackClick = () => {
 
@@ -64,27 +67,32 @@ export default function ForgotPassword() {
               }}
               className="flex-column d-flex "
             >
-               <Typography component="h4" variant="h4">
-                Forgot Password
+              <Typography component="h4" variant="h4">
+                Reset Password
               </Typography>
-              <Typography variant="subtitle2" gutterBottom sx={{mt:1}}>
-       Enter the email you used to create your account to reset password
+              <Typography variant="subtitle2" gutterBottom>
+        Choose a new password for your account
       </Typography>
               <Box
                 component="form"
                 noValidate
                 sx={{ mt: 1 }}
               >
-                <BasicTextField label="Email" size='small' value={username} onChange={(e) => setUsername(e.target.value)} />
+                <PasswordField label="Temporary Password" size='small' value={tempPass} onChange={(e) => setTemppass(e.target.value)} />
+                <div className="mt-n1">
+                <PasswordField label="New Password" size='small' value={newPass} onChange={(e) => setNewppass(e.target.value)} />
+
+                </div>
+                <PasswordField label="Confirm Password" size='small' value={confirmPass} onChange={(e) => setCOnfirmpass(e.target.value)} />
+
                 <div className="mt-3 mb-3">
-                <BasicButton type="submit" label="Send Request" onClick={handleButtonClick} />
 
+                <BasicButton type="submit" label="Reset" onClick={handleButtonClick}  />
                 </div>
-                <div className="mb-2 ">
+                <div className="mt-2 mb-2">
                 <BasicButton type="submit"  variant="outlined"  label="Back to Login" onClick={handleBackClick} />
-
                 </div>
-               
+                
               </Box>
             </Box>
           </Grid>

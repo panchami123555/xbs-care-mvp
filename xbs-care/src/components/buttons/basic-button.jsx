@@ -2,7 +2,7 @@ import React from 'react';
 import Button from '@mui/material/Button';
 import useStyles from '../assets/custom-styles/styles';
 import '../assets/css/button.css'
-const BasicButton = ({ label, onClick, color = 'primary', variant = 'contained',type }) => {
+const BasicButton = ({ label, onClick , color = 'primary', variant = 'contained',type,style='' }) => {
     const classes = useStyles();
 
   return (
@@ -13,6 +13,7 @@ const BasicButton = ({ label, onClick, color = 'primary', variant = 'contained',
       fullWidth
       className="roundedButton"
       type={type}
+    
       
     >
       {label}

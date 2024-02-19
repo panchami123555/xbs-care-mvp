@@ -23,10 +23,10 @@ import { PasswordField } from "../input-fields/password-text-field.jsx";
 export default function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  
+  const [isFormSubmitted, setFormSubmitted] = useState(false);
   const handleButtonClick = () => {
 
-
+    setFormSubmitted(true);
   };
 
   return (
@@ -69,9 +69,13 @@ export default function Login() {
                 noValidate
                 sx={{ mt: 1 }}
               >
-                <BasicTextField label="Username" size='small' value={username} onChange={(e) => setUsername(e.target.value)} />
+                <BasicTextField label="Username"    size='small' value={username} onChange={(e) => setUsername(e.target.value)} />
                 <PasswordField label="Password" size='small' value={password} onChange={(e) => setPassword(e.target.value)} />
-                <BasicButton type="submit" label="Sign In" onClick={handleButtonClick} />
+                <div className="mt-3 mb-3">
+
+                <BasicButton type="submit" label="Sign In" onClick={handleButtonClick}  />
+
+                </div>
                 <Grid container>
                   <Grid item xs>
                     <Link to="/forgot" variant="body2">
