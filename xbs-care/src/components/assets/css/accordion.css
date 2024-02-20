@@ -1,0 +1,29 @@
+
+.custom-accordion {
+    border: 1px solid var(--divider-color);
+    &:not(:last-child) {
+      border-bottom: 0;
+    }
+    &::before {
+      display: none;
+    }
+  }
+  
+ 
+  .custom-accordion-summary {
+    background-color: var(--accordion-summary-bg);
+    flex-direction: row-reverse;
+    & .MuiAccordionSummary-expandIconWrapper.Mui-expanded {
+      transform: rotate(90deg);
+    }
+    & .MuiAccordionSummary-content {
+      margin-left: var(--spacing-1);
+    }
+  }
+  
+
+  .custom-accordion-details {
+    padding: var(--spacing-2);
+    border-top: 1px solid var(--border-color);
+  }
+  

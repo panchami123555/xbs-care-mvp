@@ -9,6 +9,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import FormControl from '@mui/material/FormControl';
 import { PasswordField } from './components/input-fields/password-text-field';
+import BasicAcoordion from './components/accordion/basic-accordion';
 
 function App() {
   const [normalText, setNormalText] = useState('');
@@ -29,18 +30,22 @@ function App() {
       <div className="mt-4">
       <SelectField  label="Select Field" value={selectValue} onChange={(e) => setSelectValue(e.target.value)} options={selectOptions} />
       <PasswordField label="Password Field" value={passwordValue} onChange={(e) => setPasswordValue(e.target.value)} />
+
+      <div>
+      <BasicAcoordion
+        title="Accordion 1"
+        content={<Typography>Your content for Accordion 1</Typography>}
+      />
+      <BasicAcoordion
+        title="Accordion 2"
+        content={<Typography>Your content for Accordion 2</Typography>}
+      />
+      
+    </div>
       </div>
       
       
-       {/* <Router>
-     <Routes>
-   <Route path="/" element={<Login/>} /> 
-
-
-  
-
-   </Routes>
-   </Router> */}
+      
 
 
     </div>
