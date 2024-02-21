@@ -20,15 +20,25 @@ import '../assets/css/image.css'
 import { BasicTextField } from '../input-fields/basic-text-field';
 import BasicButton from "../buttons/basic-button";
 import { PasswordField } from "../input-fields/password-text-field.jsx";
+import BackButton from "../buttons/back-button.jsx";
 export default function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [isFormSubmitted, setFormSubmitted] = useState(false);
+  const [usernameError, setUsernameError] = useState(false);
   const handleButtonClick = () => {
 
     setFormSubmitted(true);
   };
+  const handleUsernameChange = (e) => {
+    const inputValue = e.target.value;
+    
+    // Validate if the username is not empty
+    const isValid = inputValue.trim() !== '';
 
+    setUsername(inputValue);
+    setUsernameError(!isValid);
+  };
   return (
     <Container component="main" maxWidth="lg" >
       <Box
@@ -70,13 +80,15 @@ export default function Login() {
                 noValidate
                 sx={{ mt: 1 }}
               >
-                <BasicTextField label="Username"    size='small' value={username} onChange={(e) => setUsername(e.target.value)} />
+                <BasicTextField label="Username"  
+                validate={true}  size='small' value={username} onChange={(e) => setUsername(e.target.value)} />
                 <PasswordField label="Password" size='small' value={password} onChange={(e) => setPassword(e.target.value)} />
                 <div className="mt-3 mb-3">
 
                 <BasicButton type="submit" label="Sign In" onClick={handleButtonClick}  />
 
                 </div>
+                
                 <Grid container>
                   <Grid item xs>
                     <Link to="/forgot" variant="body2">
@@ -84,6 +96,7 @@ export default function Login() {
                     </Link>
                   </Grid>
                 </Grid>
+                
               </Box>
             </Box>
           </Grid>
