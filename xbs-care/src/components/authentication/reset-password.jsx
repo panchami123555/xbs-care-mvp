@@ -1,23 +1,12 @@
-import Button from "@mui/material/Button";
-import CssBaseline from "@mui/material/CssBaseline";
-import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
-import { Link } from 'react-router-dom';
-import Paper from "@mui/material/Paper";
-import Box from "@mui/material/Box";
-import Grid from "@mui/material/Grid";
-import Typography from "@mui/material/Typography";
 import { Container } from "@mui/material";
-import imageLogo from '../../components/assets/images/carelogo.svg';
-import InputAdornment from '@mui/material/InputAdornment';
+import Box from "@mui/material/Box";
+import CssBaseline from "@mui/material/CssBaseline";
+import Grid from "@mui/material/Grid";
+import Paper from "@mui/material/Paper";
+import Typography from "@mui/material/Typography";
 import React, { useState } from 'react';
-import IconButton from '@mui/material/IconButton';
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { useNavigate } from 'react-router-dom';
-import '../assets/css/image.css'
-import { BasicTextField } from '../input-fields/basic-text-field';
+import '../assets/xbs-styles/styles.css';
 import BasicButton from "../buttons/basic-button";
 import { PasswordField } from "../input-fields/password-text-field.jsx";
 export default function ResetPassword() {
@@ -47,7 +36,7 @@ export default function ResetPassword() {
             xs={false}
             sm={4}
             md={7}
-            className=" img-fluid gridContainer"
+            className=" img-fluid home-logo"
           >
             
           </Grid>

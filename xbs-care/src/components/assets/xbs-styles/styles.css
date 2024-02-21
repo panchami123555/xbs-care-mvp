@@ -1,4 +1,28 @@
+:root {
+    --radius-button: 1.5rem;
+    --sign-in-button-color:#36ABC7;
+    --agency-logo:url("../images/carelogo.svg");
+}
+/* button styles */
 
+.rounded-button {
+    border-radius: var(--radius-button) !important;
+    background-color: var(--sign-in-button-color) !important;
+}
+
+/* image styles */
+.home-logo {
+    background-image: var(--agency-logo) !important;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    max-height:386px !important;
+  }
+
+
+  /* Accordion styles */
+  
 .custom-accordion {
     border: 1px solid var(--divider-color);
     &:not(:last-child) {
@@ -27,3 +51,5 @@
     border-top: 1px solid var(--border-color);
   }
   
+
+    
