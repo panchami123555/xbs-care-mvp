@@ -17,7 +17,11 @@ function App() {
   const [selectValue, setSelectValue] = useState('');
   const [passwordValue, setPasswordValue] = useState('');
   const [switchState, setSwitchState] = useState(false);
+  const [selectedDate, setSelectedDate] = useState(new Date());
 
+  const handleDateChange = (newDate) => {
+    setSelectedDate(newDate);
+  };
   const handleSwitchChange = () => {
     setSwitchState(!switchState);
   };
@@ -54,6 +58,12 @@ function App() {
         onChange={handleSwitchChange}
       />
     </FormGroup>
+
+    <ReusableDateCalendar
+        label="Select a Date"
+        value={selectedDate}
+        onChange={handleDateChange}
+      />
     </div>
       </div>
       
