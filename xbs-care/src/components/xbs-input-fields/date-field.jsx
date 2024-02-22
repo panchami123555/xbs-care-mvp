@@ -1,17 +1,19 @@
-import * as React from 'react';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
+import * as React from 'react';
 
 export default function DateCalendarField({ label, value, onChange, dateAdapter = AdapterDayjs, ...props }) {
   return (
     <LocalizationProvider dateAdapter={dateAdapter}>
-      <DateCalendar
-        label={label}
+       <DemoContainer components={['DatePicker']}>
+   
+   <DatePicker label={label} 
         value={value}
         onChange={(newValue) => onChange(newValue)}
-        {...props}
-      />
+        {...props} />
+      </DemoContainer>
     </LocalizationProvider>
   );
 }
