@@ -2,12 +2,15 @@
     --radius-button: 1.5rem;
     --sign-in-button-color:#36ABC7;
     --agency-logo:url("../images/carelogo.svg");
+    --navigate-button-color:#194A9F;
+    --color-white:white;
 }
 /* button styles */
 
 .rounded-button {
     border-radius: var(--radius-button) !important;
     background-color: var(--sign-in-button-color) !important;
+    color:  var(--color-white) !important;
 }
 
 /* image styles */
@@ -19,7 +22,9 @@
     height: 100vh;
     max-height:386px !important;
   }
-
+.navigate-button{
+    background-color: var( --navigate-button-color) !important;
+}
 
   /* Accordion styles */
   

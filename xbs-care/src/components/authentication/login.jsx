@@ -7,9 +7,10 @@ import Typography from "@mui/material/Typography";
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../assets/xbs-styles/styles.css';
-import BasicButton from "../buttons/basic-button";
-import { BasicTextField } from '../input-fields/basic-text-field';
-import { PasswordField } from "../input-fields/password-text-field.jsx";
+import BasicButton from "../xbs-buttons/basic-button";
+import { BasicTextField } from '../xbs-input-fields/basic-text-field';
+import { PasswordField } from "../xbs-input-fields/password-text-field.jsx";
+import CustomLabel from "../xbs-input-fields/label.jsx";
 export default function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -61,9 +62,8 @@ export default function Login() {
               }}
               className="flex-column d-flex "
             >
-              <Typography component="h4" variant="h4">
-                Welcome!
-              </Typography>
+             
+              <CustomLabel variant="h4" text="Welcome!"></CustomLabel>
               <Box
                 component="form"
                 noValidate
@@ -85,6 +85,8 @@ export default function Login() {
                     </Link>
                   </Grid>
                 </Grid>
+
+                <Grid></Grid>
                 
               </Box>
             </Box>

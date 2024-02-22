@@ -1,6 +1,6 @@
-import { BasicTextField } from './components/input-fields/basic-text-field';
-import { SelectField } from './components/input-fields/select-text-field';
-import { TextareaField } from './components/input-fields/text-area-field';
+import { BasicTextField } from './components/xbs-input-fields/basic-text-field';
+import { SelectField } from './components/xbs-input-fields/select-text-field';
+import { TextareaField } from './components/xbs-input-fields/text-area-field';
 import logo from './logo.svg';
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
@@ -8,7 +8,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import FormControl from '@mui/material/FormControl';
-import { PasswordField } from './components/input-fields/password-text-field';
+import { PasswordField } from './components/xbs-input-fields/password-text-field';
 import BasicAcoordion from './components/accordion/basic-accordion';
 
 function App() {
@@ -16,6 +16,11 @@ function App() {
   const [textareaText, setTextareaText] = useState('');
   const [selectValue, setSelectValue] = useState('');
   const [passwordValue, setPasswordValue] = useState('');
+  const [switchState, setSwitchState] = useState(false);
+
+  const handleSwitchChange = () => {
+    setSwitchState(!switchState);
+  };
   console.log(textareaText)
    console.log(passwordValue)
   const selectOptions = [
@@ -41,6 +46,14 @@ function App() {
         content={<Typography>Your content for Accordion 2</Typography>}
       />
       
+
+      <FormGroup>
+      <CustomSwitch
+        label="Trading Address is trading address same as above"
+        checked={switchState}
+        onChange={handleSwitchChange}
+      />
+    </FormGroup>
     </div>
       </div>
       

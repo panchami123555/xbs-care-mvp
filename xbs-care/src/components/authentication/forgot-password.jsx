@@ -7,8 +7,9 @@ import Typography from "@mui/material/Typography";
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../assets/xbs-styles/styles.css';
-import BasicButton from "../buttons/basic-button";
-import { BasicTextField } from '../input-fields/basic-text-field';
+import BasicButton from "../xbs-buttons/basic-button";
+import { BasicTextField } from '../xbs-input-fields/basic-text-field';
+import CustomLabel from "../xbs-input-fields/label";
 
 
 export default function ForgotPassword() {
@@ -53,12 +54,13 @@ export default function ForgotPassword() {
               }}
               className="flex-column d-flex "
             >
-               <Typography component="h4" variant="h4">
-                Forgot Password
-              </Typography>
-              <Typography variant="subtitle2" gutterBottom sx={{mt:1}}>
-       Enter the email you used to create your account to reset password
-      </Typography>
+               
+
+              <CustomLabel variant="h4" text="Forgot Password"></CustomLabel>
+
+             
+                    <CustomLabel variant="subtitle2" sx={{mt:1}} text=" Enter the email you used to create your account to reset password"></CustomLabel>
+
               <Box
                 component="form"
                 noValidate

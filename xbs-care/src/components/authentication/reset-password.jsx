@@ -7,8 +7,8 @@ import Typography from "@mui/material/Typography";
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../assets/xbs-styles/styles.css';
-import BasicButton from "../buttons/basic-button";
-import { PasswordField } from "../input-fields/password-text-field.jsx";
+import BasicButton from "../xbs-buttons/basic-button";
+import { PasswordField } from "../xbs-input-fields/password-text-field.jsx";
 export default function ResetPassword() {
     const navigate = useNavigate();
   const [tempPass,setTemppass] = useState('');
@@ -56,12 +56,10 @@ export default function ResetPassword() {
               }}
               className="flex-column d-flex "
             >
-              <Typography component="h4" variant="h4">
-                Reset Password
-              </Typography>
-              <Typography variant="subtitle2" gutterBottom>
-        Choose a new password for your account
-      </Typography>
+              
+               <CustomLabel variant="h4" text="Reset Password"></CustomLabel>
+               <CustomLabel variant="subtitle2" text=" Choose a new password for your account"></CustomLabel>
+             
               <Box
                 component="form"
                 noValidate
