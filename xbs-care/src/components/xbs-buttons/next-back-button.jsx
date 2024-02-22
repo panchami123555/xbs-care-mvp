@@ -2,7 +2,7 @@ import React from 'react';
 import Button from '@mui/material/Button';
 import useStyles from '../assets/custom-styles/styles';
 import '../assets/xbs-styles/styles.css'
-const BackButton = ({ label, onClick , color = 'primary', size="small",variant = 'contained',type,style='' }) => {
+const BackButton = ({ label, onClick , color = 'primary', size="small",variant = 'contained',type,style='', disabled }) => {
     const classes = useStyles();
 
   return (
@@ -11,9 +11,9 @@ const BackButton = ({ label, onClick , color = 'primary', size="small",variant =
       variant={variant}
       onClick={onClick}
       className="navigate-button"
-      size={small}
+      size={size}
       type={type}
-
+      disabled={disabled}
     >
       {label}
     </Button>

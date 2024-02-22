@@ -1,68 +1,64 @@
-/* Logo Style */
-.logo {
-    height: 150px;
-  }
-  
-  /* Card Style */
-  .cardStyle {
-    max-width: 90%;
-    max-height: 90vh;
-    border-radius: 40px;
-    background: #FFF;
-    box-shadow: 10px 10px 32px 2px #194A9F, 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 2rem;
-  }
-  
-  /* Welcome Text Style */
-  .welcomeText {
-    color: #194A9F;
-    font-size: 30px;
-    font-weight: 600;
-    line-height: normal;
-    width: 100%;
-    text-align: left;
-    margin-bottom: 1rem;
-  }
-  
-  /* AppBar Style */
-  .appBarStyle {
-    background-color: transparent;
-    color: #194A9F;
-    box-shadow: none;
-    border-bottom: 1px solid #e0e0e0;
-    width: 100%;
-  }
-  
-  /* Setup Text Style */
-  .setupText {
-    color: #194A9F;
-    font-size: 20px;
-    font-weight: 600;
-    line-height: normal;
-    width: 100%;
-    text-align: left;
-    margin-bottom: 1rem;
-  }
-  
-  /* TextField Style */
-  .textFieldStyle {
-    border-radius: 10px;
-  }
-  
-  /* Image Style */
-  .imageStyle {
-    max-width: 100%;
-    height: 330px;
-  }
-  
-  /* Button Style */
-  .buttonStyle {
-    background-color: #123B94;
-    &:hover {
-      background-color: #0f2c6d;
-    }
-  }
-  
+
+.logoContainer {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  position: absolute;
+  top: 2%;
+  left: 2%;
+  padding: 20px;
+}
+
+.logoImage {
+  height: 60px;
+}
+
+.cardStyle {
+  max-width: 90%;
+  max-height: 90vh;
+  border-radius: 40px;
+  background: #FFF;
+  box-shadow: 10px 10px 32px 2px #194A9F, 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 2rem;
+  overflow-y: auto;
+}
+
+.welcomeText {
+  color: #194A9F;
+  font-size: 30px;
+  font-weight: 600;
+  line-height: normal;
+  width: 100%;
+  text-align: left;
+  margin-bottom: 1rem;
+}
+
+.setupText {
+  color: #194A9F;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: normal;
+  width: 100%;
+  text-align: left;
+  margin-bottom: 1rem;
+}
+
+.textField {
+  border-radius: 10px;
+  /* border: 1px solid #194A9F; */
+}
+
+.actionButton {
+  background-color: #123B94;
+}
+
+.actionButton:hover {
+  background-color: #0f2c6d;
+}
+
+
+

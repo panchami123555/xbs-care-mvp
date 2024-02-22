@@ -1,42 +1,21 @@
 import React from 'react';
 import { TextField, Grid } from '@mui/material';
+import { BasicTextField } from '../input-fields/basic-text-field';
 
 const AgencyDetailsForm = () => {
   return (
     <Grid container spacing={2}>
       <Grid item xs={12}>
-        <TextField
-          fullWidth
-          label="Name of Agency"
-          variant="outlined"
-          required
-        />
+      <BasicTextField label="Name of Agency"    size='small' /> 
       </Grid>
       <Grid item xs={12} sm={6}>
-        <TextField
-          fullWidth
-          label="Contact Number"
-          variant="outlined"
-          type="tel"
-          required
-        />
+      <BasicTextField label="Contact Number"    size='small'  /> 
       </Grid>
       <Grid item xs={12} sm={6}>
-        <TextField
-          fullWidth
-          label="Alternate Contact Number"
-          variant="outlined"
-          type="tel"
-        />
+      <BasicTextField label="Alternate contact Number"    size='small'  /> 
       </Grid>
       <Grid item xs={12}>
-        <TextField
-          fullWidth
-          label="Official Email ID"
-          variant="outlined"
-          type="email"
-          required
-        />
+      <BasicTextField label="Official Email Id"    size='small' /> 
       </Grid>
     </Grid>
   );

@@ -1,7 +1,18 @@
 import React from 'react';
 import Switch from '@mui/material/Switch';
 import { styled } from '@mui/material/styles';
+import { Typography, Stack } from '@mui/material';
 
+const labelStyle = {
+  color: '#194A9F',
+  fontSize: '15px',
+  fontWeight: 600,
+  lineHeight: 'normal',
+  width: '100%',
+  textAlign: 'left',
+  marginBottom: '1rem',
+  paddingTop: '3%',
+}
 const AntSwitch = styled(Switch)(({ theme }) => ({
     width: 28,
     height: 16,
@@ -47,7 +58,7 @@ const AntSwitch = styled(Switch)(({ theme }) => ({
 const CustomSwitch = ({ label, checked, onChange }) => {
   return (
     <>
-      <Typography>{label}</Typography>
+      <Typography style={labelStyle}>{label}</Typography>
       <Stack direction="row" spacing={1} alignItems="center">
         <Typography>YES</Typography>
         <AntSwitch

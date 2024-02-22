@@ -1,7 +1,7 @@
 import TextField from '@mui/material/TextField';
 import React, { useState } from 'react';
 
-export const BasicTextField = ({ label, value, size, onChange, validate }) => {
+export const BasicTextField = ({ label, value, size, onChange, validate, required, style }) => {
   
 
 
@@ -12,7 +12,8 @@ export const BasicTextField = ({ label, value, size, onChange, validate }) => {
       onChange={onChange}
       fullWidth
       size={size}
-      
+      required={required}
+      sx={style}
     />
   );
 };
