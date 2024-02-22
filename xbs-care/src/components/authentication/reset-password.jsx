@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import '../assets/xbs-styles/styles.css';
 import BasicButton from "../xbs-buttons/basic-button";
 import { PasswordField } from "../xbs-input-fields/password-text-field.jsx";
+import CustomLabel from "../xbs-input-fields/label.jsx";
 export default function ResetPassword() {
     const navigate = useNavigate();
   const [tempPass,setTemppass] = useState('');
