@@ -13,7 +13,6 @@ const defaultStyle = {
     padding: '2rem',
     overflowY: 'auto',
     display: 'flex', 
-    flexDirection: 'column'
 };
 
 const labelStyle = {
