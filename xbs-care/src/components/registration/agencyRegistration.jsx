@@ -9,6 +9,8 @@ import CustomLabel from '../xbs-input-fields/label.jsx';
 import { BasicTextField } from '../xbs-input-fields/basic-text-field.jsx';
 import CustomAccordion from '../xbs-accordion/accordion.jsx';
 import CustomSwitch from '../xbs-switch/switch.jsx';
+import CustomCard from '../xbs-card/card.jsx';
+import CustomContainer from '../xbs-container/container.jsx';
 
 const labelStyle = {
   color: '#194A9F',
@@ -71,12 +73,12 @@ function RegistrationForm() {
 
             {isTradingAddressSame && (
               <>
-                <div className='text-box-style'><BasicTextField label="Street Address" id="streetAddress" /></div>
-                <div className='text-box-style'><BasicTextField label="Town/City" id="townCity" /></div>
-                <div className='text-box-style'><BasicTextField label="Country(Optional)" id="country" /></div>
-                <div className='text-box-style'><BasicTextField label="Locality(Optional)" id="locality" /></div>
-                <div className='text-box-style'><BasicTextField label="Postal Code" id="postalCode" /></div>
-                <div className='text-box-style'><BasicTextField label="Country" id="country2" /></div>
+                <div className='text-box-style'><BasicTextField label="Street Address" id="streetAddressTradding" /></div>
+                <div className='text-box-style'><BasicTextField label="Town/City" id="townCityTradding" /></div>
+                <div className='text-box-style'><BasicTextField label="Country(Optional)" id="countryTradding" /></div>
+                <div className='text-box-style'><BasicTextField label="Locality(Optional)" id="localityTradding" /></div>
+                <div className='text-box-style'><BasicTextField label="Postal Code" id="postalCodeTradding" /></div>
+                <div className='text-box-style'><BasicTextField label="Country" id="countryTradding" /></div>
               </>
             )}
           </Box>
@@ -86,12 +88,12 @@ function RegistrationForm() {
           <Box>
             <CustomLabel text={"Tell us more about yourself.."} style={labelStyle}> </CustomLabel>
             <CustomAccordion summary="Account Details" defaultExpanded='true'>
-              <div className='text-box-style'><BasicTextField label="Date of Incoperation" id="townCity" /></div>
-              <div className='text-box-style'><BasicTextField label="Company Website" id="townCity" /></div>
-              <div className='text-box-style'><BasicTextField label="Company Registration Number" id="townCity" /></div>
-              <div className='text-box-style'><BasicTextField label="Unique Taxpayer Reference (UTR)" id="townCity" /></div>
-              <div className='text-box-style'><BasicTextField label="Number of Resources" id="townCity" /></div>
-              <div className='text-box-style'><BasicTextField label="Number of Clients" id="townCity" /></div>
+              <div className='text-box-style'><BasicTextField label="Date of Incoperation" id="dateIncoperation" /></div>
+              <div className='text-box-style'><BasicTextField label="Company Website" id="compWebsite" /></div>
+              <div className='text-box-style'><BasicTextField label="Company Registration Number" id="compRegNumber" /></div>
+              <div className='text-box-style'><BasicTextField label="Unique Taxpayer Reference (UTR)" id="uniqueTaxRef" /></div>
+              <div className='text-box-style'><BasicTextField label="Number of Resources" id="nResources" /></div>
+              <div className='text-box-style'><BasicTextField label="Number of Clients" id="nClients" /></div>
             </CustomAccordion>
             <CustomAccordion summary="Leadership Details" defaultExpanded='true'>
               <div className='text-box-style'><BasicTextField label="Role" id="role" /></div>
@@ -100,12 +102,12 @@ function RegistrationForm() {
               <div className='text-box-style'><BasicTextField label="Phone" id="phone" /></div>
             </CustomAccordion>
             <CustomAccordion summary="Address (Optional)" defaultExpanded='true'>
-              <div className='text-box-style'><BasicTextField label="Street Address" id="phone" /></div>
-              <div className='text-box-style'><BasicTextField label="Locality (Optional)" id="phone" /></div>
-              <div className='text-box-style'><BasicTextField label="Town/ City" id="phone" /></div>
-              <div className='text-box-style'><BasicTextField label="Postal Code" id="phone" /></div>
-              <div className='text-box-style'><BasicTextField label="County (optional)" id="phone" /></div>
-              <div className='text-box-style'><BasicTextField label="Country" id="phone" /></div>
+              <div className='text-box-style'><BasicTextField label="Street Address" id="address" /></div>
+              <div className='text-box-style'><BasicTextField label="Locality (Optional)" id="local" /></div>
+              <div className='text-box-style'><BasicTextField label="Town/ City" id="townCity" /></div>
+              <div className='text-box-style'><BasicTextField label="Postal Code" id="postCode" /></div>
+              <div className='text-box-style'><BasicTextField label="County (optional)" id="countryOptional" /></div>
+              <div className='text-box-style'><BasicTextField label="Country" id="country" /></div>
             </CustomAccordion>
           </Box>
         );
@@ -114,8 +116,8 @@ function RegistrationForm() {
           <Box>
             <CustomLabel text={"Almost Done"} style={labelStyle}> </CustomLabel>
             <CustomLabel text={"Please upload relevent agency documents"} style={labelStyle2}> </CustomLabel>
-            <div className='text-box-style'><BasicTextField label="Name" id="phone" /></div>
-            <div className='text-box-style'><BasicTextField label="Type" id="phone" /></div>
+            <div className='text-box-style'><BasicTextField label="Name" id="name" /></div>
+            <div className='text-box-style'><BasicTextField label="Type" id="type" /></div>
           </Box>
         );
       default:
@@ -129,14 +131,15 @@ function RegistrationForm() {
         <img src={xbsCareLogo} alt="Logo" className="logoImage" />
       </Box>
 
-      <Container sx={{ height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-        <Card sx={{ width: '80vw', height: '64vh', borderRadius: '40px', background: '#FFF', boxShadow: '10px 10px 32px 2px #194A9F, 0px 4px 4px 0px rgba(0, 0, 0, 0.25)', display: 'flex', alignItems: 'flex-start', padding: '2rem', overflowY: 'auto' }}>
-          <CustomLabel text={"Welcome to XBS Care!"} style={labelStyle}> </CustomLabel>
-          <CardContent>
+      <CustomContainer>
+        <CustomCard
+          title={"Welcome to XBS Care!"}
+          content={
             <StepperComponent getStepContent={getStepContent} />
-          </CardContent>
-        </Card>
-      </Container>
+          }
+        />
+
+      </CustomContainer>
     </Box>
   );
 }
