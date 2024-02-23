@@ -4,7 +4,7 @@ import { styled } from '@mui/material/styles';
 import { Typography, Stack } from '@mui/material';
 
 const labelStyle = {
-  color: '#194A9F',
+  // color: '#194A9F',
   fontSize: '15px',
   fontWeight: 600,
   lineHeight: 'normal',
@@ -60,13 +60,13 @@ const CustomSwitch = ({ label, checked, onChange }) => {
     <>
       <Typography style={labelStyle}>{label}</Typography>
       <Stack direction="row" spacing={1} alignItems="center">
-        <Typography>YES</Typography>
+        <Typography>Yes</Typography>
         <AntSwitch
           checked={checked}
           onChange={onChange}
           inputProps={{ 'aria-label': 'ant design' }}
         />
-        <Typography>NO</Typography>
+        <Typography>No</Typography>
       </Stack>
     </>
   );

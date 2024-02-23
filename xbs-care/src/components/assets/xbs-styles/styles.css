@@ -109,3 +109,10 @@
   height: 100vh;
   overflow: hidden;
 }
+
+.container-Box {
+  height: '100%'; 
+  display: 'flex'; 
+  justify-content: 'center';
+  align-items: 'center';
+}

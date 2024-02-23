@@ -16,7 +16,7 @@ const StepperComponent = ({ getStepContent }) => {
   };
 
   return (
-    <Box>
+    <Box sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
       <Stepper activeStep={activeStep} alternativeLabel>
         {steps.map((label) => (
           <Step key={label}>
@@ -26,14 +26,31 @@ const StepperComponent = ({ getStepContent }) => {
       </Stepper>
       <div>
         {getStepContent(activeStep)}
-        <Box  sx={{ display: 'flex', justifyContent: 'flex-end', paddingTop: '1rem', marginRight: '20px'  }}>
-          <Button disabled={activeStep === 0} onClick={handleBack} variant="contained" sx={{ backgroundColor: '#123B94', '&:hover': { backgroundColor: '#0f2c6d' } }}>
+        <Box sx={{ display: 'flex', justifyContent: 'flex-end', paddingTop: '1rem', marginRight: '20px' }}>
+          <Button
+            disabled={activeStep === 0}
+            onClick={handleBack}
+            variant="contained"
+            sx={{
+              backgroundColor: '#123B94',
+              '&:hover': { backgroundColor: '#0f2c6d' },
+              marginRight: '8px' // Add right margin to the first button
+            }}
+          >
             Back
           </Button>
-          <Button onClick={handleNext} variant="contained" sx={{ backgroundColor: '#123B94', '&:hover': { backgroundColor: '#0f2c6d' } }}>
+          <Button
+            onClick={handleNext}
+            variant="contained"
+            sx={{
+              backgroundColor: '#123B94',
+              '&:hover': { backgroundColor: '#0f2c6d' }
+            }}
+          >
             {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
           </Button>
         </Box>
+
       </div>
     </Box>
   );
