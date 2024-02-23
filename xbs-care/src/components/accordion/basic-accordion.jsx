@@ -8,7 +8,7 @@ import MuiAccordionSummary, {
 } from '@mui/material/AccordionSummary';
 import MuiAccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
-import './styles.css';
+import '../assets/xbs-styles/styles.css';
 
 const Accordion = styled((props) => (
   <MuiAccordion disableGutters elevation={0} square {...props} />
@@ -32,7 +32,7 @@ const AccordionDetails = styled(MuiAccordionDetails)({
 
 
 export default function BasicAcoordion({ title, content }) {
-  const [expanded, setExpanded] = React.useState<string | false>(title.toLowerCase());
+  const [expanded, setExpanded] = React.useState(title.toLowerCase());
 
   const handleChange = (panel) => (event, newExpanded) => {
     setExpanded(newExpanded ? panel : false);

@@ -1,17 +1,22 @@
+import FormGroup from '@mui/material/FormGroup';
+import Typography from '@mui/material/Typography';
+import React, { useState } from 'react';
+import BasicAcoordion from './components/accordion/basic-accordion';
+import CustomAlert from './components/xbs-alerts/xbs-alerts';
 import { BasicTextField } from './components/xbs-input-fields/basic-text-field';
+import DateCalendarField from './components/xbs-input-fields/date-field';
+import { PasswordField } from './components/xbs-input-fields/password-text-field';
 import { SelectField } from './components/xbs-input-fields/select-text-field';
 import { TextareaField } from './components/xbs-input-fields/text-area-field';
-import logo from './logo.svg';
-import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
-import FormControl from '@mui/material/FormControl';
-import { PasswordField } from './components/xbs-input-fields/password-text-field';
-import BasicAcoordion from './components/accordion/basic-accordion';
+import CustomSwitch from './components/xbs-switch/switch';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import CustomLabel from './components/xbs-input-fields/label';
 
-function App() {
+
+
+function Test() {
   const [normalText, setNormalText] = useState('');
   const [textareaText, setTextareaText] = useState('');
   const [selectValue, setSelectValue] = useState('');
@@ -57,13 +62,27 @@ function App() {
         checked={switchState}
         onChange={handleSwitchChange}
       />
-    </FormGroup>
+    </FormGroup> 
 
-    <ReusableDateCalendar
+    <DateCalendarField
         label="Select a Date"
-        value={selectedDate}
+       
         onChange={handleDateChange}
       />
+
+<CustomAlert severity="success" label="This is a success Alert." />
+<CustomAlert severity="info" label="This is a info message." />
+
+<Card  className='mt-4 mb-4 ml-4 mr-4'>
+      <CardContent>
+<CustomLabel text="Terms and Conditions" variant="h6" color="primary">
+</CustomLabel>
+<CustomLabel text="Your Agreement" variant="subtitle2" >
+</CustomLabel>
+
+
+        </CardContent>
+</Card>
     </div>
       </div>
       
@@ -76,4 +95,4 @@ function App() {
   );
 }
 
-export default App;
+export default Test;
