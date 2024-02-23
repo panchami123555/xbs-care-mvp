@@ -1,7 +1,6 @@
 import FormGroup from '@mui/material/FormGroup';
 import Typography from '@mui/material/Typography';
 import React, { useState } from 'react';
-import BasicAcoordion from './components/accordion/basic-accordion';
 import CustomAlert from './components/xbs-alerts/xbs-alerts';
 import { BasicTextField } from './components/xbs-input-fields/basic-text-field';
 import DateCalendarField from './components/xbs-input-fields/date-field';
@@ -31,7 +30,7 @@ function Test() {
     setSwitchState(!switchState);
   };
   console.log(textareaText)
-   console.log(passwordValue)
+  console.log(passwordValue)
   const selectOptions = [
     { value: 'option1', label: 'Option 1' },
     { value: 'option2', label: 'Option 2' },
@@ -40,58 +39,51 @@ function Test() {
   return (
     <div className="mt-4">
       <BasicTextField label="Basic field" value={normalText} size='normal' onChange={(e) => setNormalText(e.target.value)} />
-      <TextareaField  label="Textarea Field" value={textareaText} onChange={(e) => setTextareaText(e.target.value)} />
+      <TextareaField label="Textarea Field" value={textareaText} onChange={(e) => setTextareaText(e.target.value)} />
       <div className="mt-4">
-      <SelectField  label="Select Field" value={selectValue} onChange={(e) => setSelectValue(e.target.value)} options={selectOptions} />
-      <PasswordField label="Password Field" value={passwordValue} onChange={(e) => setPasswordValue(e.target.value)} />
+        <SelectField label="Select Field" value={selectValue} onChange={(e) => setSelectValue(e.target.value)} options={selectOptions} />
+        <PasswordField label="Password Field" value={passwordValue} onChange={(e) => setPasswordValue(e.target.value)} />
 
-      <div>
-      <BasicAcoordion
-        title="Accordion 1"
-        content={<Typography>Your content for Accordion 1</Typography>}
-      />
-      <BasicAcoordion
-        title="Accordion 2"
-        content={<Typography>Your content for Accordion 2</Typography>}
-      />
-      
-
-      <FormGroup>
-      <CustomSwitch
-        label="Trading Address is trading address same as above"
-        checked={switchState}
-        onChange={handleSwitchChange}
-      />
-    </FormGroup> 
-
-    <DateCalendarField
-        label="Select a Date"
-       
-        onChange={handleDateChange}
-      />
-
-<CustomAlert severity="success" label="This is a success Alert." />
-<CustomAlert severity="info" label="This is a info message." />
-
-<Card  className='mt-4 mb-4 ml-4 mr-4'>
-      <CardContent>
-<CustomLabel text="Terms and Conditions" variant="h6" color="primary">
-</CustomLabel>
-<CustomLabel text="Your Agreement" variant="subtitle2" >
-</CustomLabel>
+        <div>
+          
 
 
-        </CardContent>
-</Card>
-    </div>
+          <FormGroup>
+            <CustomSwitch
+              label="Trading Address is trading address same as above"
+              checked={switchState}
+              onChange={handleSwitchChange}
+            />
+          </FormGroup>
+
+          <DateCalendarField
+            label="Select a Date"
+
+            onChange={handleDateChange}
+          />
+
+          <CustomAlert severity="success" label="This is a success Alert." />
+          <CustomAlert severity="info" label="This is a info message." />
+
+          <Card className='mt-4 mb-4 ml-4 mr-4'>
+            <CardContent>
+              <CustomLabel text="Terms and Conditions" variant="h6" color="primary">
+              </CustomLabel>
+              <CustomLabel text="Your Agreement" variant="subtitle2" >
+              </CustomLabel>
+
+
+            </CardContent>
+          </Card>
+        </div>
       </div>
-      
-      
-      
+
+
+
 
 
     </div>
-    
+
   );
 }
 
