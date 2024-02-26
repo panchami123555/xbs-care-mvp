@@ -1,5 +1,14 @@
 // CustomLabelStyles.js
 const styles = {
+  title: {
+    color: '#194A9F',
+    fontSize: '20px',
+    fontWeight: 600,
+    lineHeight: 'normal',
+    width: '100%',
+    textAlign: 'left',
+    marginBottom: '1rem',
+  },
   large: {
     color: '#194A9F',
     fontSize: '20px',
@@ -18,7 +27,7 @@ const styles = {
     width: '100%',
     textAlign: 'left',
     marginBottom: '1rem',
-    paddingTop: '6%',
+    paddingTop: '2%',
   },
   normal: {
     fontSize: '15px',

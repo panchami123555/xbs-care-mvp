@@ -20,7 +20,7 @@ const CustomCard = ({ title, content, style }) => {
     return (
         <Card sx={{ ...defaultStyle, ...style }}>
             <CardContent sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
-                {title && <CustomLabel text={title} type={'large'} />}
+                {title && <CustomLabel text={title} type={'title'} />}
                 <div style={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
                 {content}
                 </div>
