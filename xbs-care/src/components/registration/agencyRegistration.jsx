@@ -1,6 +1,6 @@
 // Import necessary components and styles
 import { React, useState } from 'react';
-import { Box, Container, TextField, Button, Typography, Card, CardContent } from '@mui/material';
+import { Box, Grid } from '@mui/material';
 import StepperComponent from '../stepper/stepper.jsx';
 import '../assets/xbs-styles/agencyRegister.css';
 import '../assets/xbs-styles/styles.css';
@@ -11,27 +11,8 @@ import CustomAccordion from '../xbs-accordion/accordion.jsx';
 import CustomSwitch from '../xbs-switch/switch.jsx';
 import CustomCard from '../xbs-card/card.jsx';
 import CustomContainer from '../xbs-container/container.jsx';
+import agencyImage from '../assets/images/agency.png'
 
-const labelStyle = {
-  color: '#194A9F',
-  fontSize: '20px',
-  fontWeight: 600,
-  lineHeight: 'normal',
-  width: '100%',
-  textAlign: 'left',
-  marginBottom: '1rem',
-  paddingTop: '3%',
-}
-const labelStyle2 = {
-  color: '#194A9F',
-  fontSize: '15px',
-  fontWeight: 600,
-  lineHeight: 'normal',
-  width: '100%',
-  textAlign: 'left',
-  marginBottom: '1rem',
-  paddingTop: '3%',
-}
 function RegistrationForm() {
   const [isTradingAddressSame, setIsTradingAddressSame] = useState(false);
 
@@ -42,43 +23,67 @@ function RegistrationForm() {
     switch (step) {
       case 0:
         return (
-          <Box>
-            <CustomLabel text={"Let’s set you up!"} style={labelStyle}> </CustomLabel>
-            <div className='text-box-style'><BasicTextField label="Name of Agency" id="nameOfAgency" /></div>
-            <div className='text-box-style'><BasicTextField label="Contact Number" id="contactNumber" /></div>
-            <div className='text-box-style'><BasicTextField label="Alternate contact Number" id="alternateContactNumber" /></div>
-            <div className='text-box-style'><BasicTextField label="Email" id="email" /></div>
-          </Box>
+          <Grid container spacing={2}>
+            <Grid item xs={12} md={6}>
+              <Box>
+                <CustomLabel text={"Let’s set you up!"} type={'large'}> </CustomLabel>
+                <div className='text-box-style'><BasicTextField label="Name of Agency" id="nameOfAgency" className='text-box-style' style={{ width: '120%' }} /></div>
+                <div className='text-box-style'><BasicTextField label="Contact Number" id="contactNumber" className='text-box-style' style={'width:90%'} /></div>
+                <div className='text-box-style'><BasicTextField label="Alternate contact Number" id="alternateContactNumber" className='text-box-style' style={'width:90%'} /></div>
+                <div className='text-box-style'><BasicTextField label="Email" id="email" className='text-box-style' style={'width:90%'} /></div>
+              </Box>
+            </Grid>
+            <Grid item xs={12} md={6} className='image-grid'>
+              <img src={agencyImage} className='image-style' />
+            </Grid>
+          </Grid>
         );
+
       case 1:
         return (
           <Box>
-            <CustomLabel text={"Tell us more about yourself.."} style={labelStyle}> </CustomLabel>
-            <CustomLabel text={"Registered office Address"} style={labelStyle2}> </CustomLabel>
-            <div><BasicTextField label="Street Address" id="streetAddress" className='text-box-style' /></div>
-            <div className='text-box-style'><BasicTextField label="Town/City" id="townCity" /></div>
-            <div className='text-box-style'><BasicTextField label="Country(Optional)" id="country" /></div>
-            <div className='text-box-style'><BasicTextField label="Locality(Optional)" id="locality" /></div>
-            <div className='text-box-style'><BasicTextField label="Postal Code" id="postalCode" /></div>
-            <div className='text-box-style'><BasicTextField label="Country" id="country2" /></div>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '20px' }}>
-              <CustomLabel text={"Trading Address"} style={{ ...labelStyle, flex: 1 }} />
-              <CustomSwitch
-                label="Is trading address same as above?"
-                checked={isTradingAddressSame}
-                onChange={handleToggleChange}
-                style={{ flex: 1 }}
-              />
-            </div>
+            <CustomLabel text={"Tell us more about yourself.."} type={'large'}> </CustomLabel>
+            <CustomLabel text={"Registered office Address"} type={'medium'}> </CustomLabel>
+            <Grid container spacing={2}>
+              <Grid item xs={12} md={6}>
+                <div className='text-box-style'><BasicTextField label="Street Address" id="streetAddress" style={{ width: '90%' }} /></div>
+                <div className='text-box-style'><BasicTextField label="Town/City" id="townCity" style={{ width: '90%' }} /></div>
+                <div className='text-box-style'><BasicTextField label="Country(Optional)" id="country" style={{ width: '90%' }} /></div>
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <div className='text-box-style'><BasicTextField label="Locality(Optional)" id="locality" style={{ width: '90%' }} /></div>
+                <div className='text-box-style'><BasicTextField label="Postal Code" id="postalCode" style={{ width: '90%' }} /></div>
+                <div className='text-box-style'><BasicTextField label="Country" id="country2" style={{ width: '90%' }} /></div>
+              </Grid>
+            </Grid>
+            <Grid container spacing={2} paddingTop={'3%'}>
+              <Grid item xs={6} md={2}>
+                <CustomLabel text={"Trading Address"} type={'medium'}/>
+              </Grid>
+              <Grid item xs={4} md={6}>
+                <CustomSwitch
+                  label="Is trading address same as above?"
+                  checked={isTradingAddressSame}
+                  onChange={handleToggleChange}
+                />
+              </Grid>
+            </Grid>
+
 
             {isTradingAddressSame && (
               <>
-                <div className='text-box-style'><BasicTextField label="Street Address" id="streetAddressTradding" /></div>
-                <div className='text-box-style'><BasicTextField label="Town/City" id="townCityTradding" /></div>
-                <div className='text-box-style'><BasicTextField label="Country(Optional)" id="countryTradding" /></div>
-                <div className='text-box-style'><BasicTextField label="Locality(Optional)" id="localityTradding" /></div>
-                <div className='text-box-style'><BasicTextField label="Postal Code" id="postalCodeTradding" /></div>
-                <div className='text-box-style'><BasicTextField label="Country" id="countryTradding" /></div>
+                <Grid container spacing={2}>
+                  <Grid item xs={12} md={6}>
+                    <div className='text-box-style'><BasicTextField label="Street Address" id="streetAddress" style={{ width: '90%' }} /></div>
+                    <div className='text-box-style'><BasicTextField label="Town/City" id="townCity" style={{ width: '90%' }} /></div>
+                    <div className='text-box-style'><BasicTextField label="Country(Optional)" id="country" style={{ width: '90%' }} /></div>
+                  </Grid>
+                  <Grid item xs={12} md={6}>
+                    <div className='text-box-style'><BasicTextField label="Locality(Optional)" id="locality" style={{ width: '90%' }} /></div>
+                    <div className='text-box-style'><BasicTextField label="Postal Code" id="postalCode" style={{ width: '90%' }} /></div>
+                    <div className='text-box-style'><BasicTextField label="Country" id="country2" style={{ width: '90%' }} /></div>
+                  </Grid>
+                </Grid>
               </>
             )}
           </Box>
@@ -86,39 +91,64 @@ function RegistrationForm() {
       case 2:
         return (
           <Box>
-            <CustomLabel text={"Tell us more about yourself.."} style={labelStyle}> </CustomLabel>
-            <CustomAccordion summary="Account Details" defaultExpanded='true'>
-              <div className='text-box-style'><BasicTextField label="Date of Incoperation" id="dateIncoperation" /></div>
-              <div className='text-box-style'><BasicTextField label="Company Website" id="compWebsite" /></div>
-              <div className='text-box-style'><BasicTextField label="Company Registration Number" id="compRegNumber" /></div>
-              <div className='text-box-style'><BasicTextField label="Unique Taxpayer Reference (UTR)" id="uniqueTaxRef" /></div>
-              <div className='text-box-style'><BasicTextField label="Number of Resources" id="nResources" /></div>
-              <div className='text-box-style'><BasicTextField label="Number of Clients" id="nClients" /></div>
+            <CustomLabel text={"Tell us more about yourself.."} type={'large'}> </CustomLabel>
+            <CustomAccordion summary="Account Details" defaultExpanded={true}>
+              <Grid container spacing={2}>
+                <Grid item xs={12} md={6}>
+                  <div className='text-box-style'><BasicTextField label="Date of Incoperation" id="dateIncoperation" style={{ width: '90%' }} /></div>
+                  <div className='text-box-style'><BasicTextField label="Company Website" id="compWebsite" style={{ width: '90%' }} /></div>
+                  <div className='text-box-style'><BasicTextField label="Company Registration Number" id="compRegNumber" style={{ width: '90%' }} /></div>
+                  <div className='text-box-style'><BasicTextField label="Unique Taxpayer Reference (UTR)" id="uniqueTaxRef" style={{ width: '90%' }} /></div>
+                  <div className='text-box-style'><BasicTextField label="Number of Resources" id="nResources" style={{ width: '90%' }} /></div>
+                  <div className='text-box-style'><BasicTextField label="Number of Clients" id="nClients" style={{ width: '90%' }} /></div>
+                </Grid>
+                <Grid item xs={12} md={6} className='image-grid'>
+                  <img src={agencyImage} className='image-style' />
+                </Grid>
+              </Grid>
             </CustomAccordion>
-            <CustomAccordion summary="Leadership Details" defaultExpanded='true'>
-              <div className='text-box-style'><BasicTextField label="Role" id="role" /></div>
-              <div className='text-box-style'><BasicTextField label="Name" id="name" /></div>
-              <div className='text-box-style'><BasicTextField label="Email" id="email" /></div>
-              <div className='text-box-style'><BasicTextField label="Phone" id="phone" /></div>
-            </CustomAccordion>
-            <CustomAccordion summary="Address (Optional)" defaultExpanded='true'>
-              <div className='text-box-style'><BasicTextField label="Street Address" id="address" /></div>
-              <div className='text-box-style'><BasicTextField label="Locality (Optional)" id="local" /></div>
-              <div className='text-box-style'><BasicTextField label="Town/ City" id="townCity" /></div>
-              <div className='text-box-style'><BasicTextField label="Postal Code" id="postCode" /></div>
-              <div className='text-box-style'><BasicTextField label="County (optional)" id="countryOptional" /></div>
-              <div className='text-box-style'><BasicTextField label="Country" id="country" /></div>
+            <CustomAccordion summary="Leadership Details" defaultExpanded={true}>
+              <Grid container spacing={2}>
+                <Grid item xs={12} md={6}>
+                  <div className='text-box-style'><BasicTextField label="Role" id="role" style={{ width: '100%' }} /></div>
+                  <div className='text-box-style'><BasicTextField label="Email" id="email" style={{ width: '100%' }} /></div>
+                </Grid>
+                <Grid item xs={12} md={6}>
+                  <div className='text-box-style'><BasicTextField label="Name" id="name" style={{ width: '100%' }} /></div>
+                  <div className='text-box-style'><BasicTextField label="Phone" id="phone" style={{ width: '100%' }} /></div>
+                </Grid>
+                <Grid item xs={12}>
+                  <CustomLabel text={"Address (Optional)"} style={{ width: '100%' }} type={'normal'} />
+                </Grid>
+                <Grid item xs={12} md={6}>
+                  <div className='text-box-style'><BasicTextField label="Street Address" id="address" style={{ width: '100%' }} /></div>
+                  <div className='text-box-style'><BasicTextField label="Town/ City" id="townCity" style={{ width: '100%' }} /></div>
+                  <div className='text-box-style'><BasicTextField label="Country (optional)" id="countryOptional" style={{ width: '100%' }} /></div>
+                </Grid>
+                <Grid item xs={12} md={6}>
+                  <div className='text-box-style'><BasicTextField label="Locality (Optional)" id="local" style={{ width: '100%' }} /></div>
+                  <div className='text-box-style'><BasicTextField label="Postal Code" id="postCode" style={{ width: '100%' }} /></div>
+                  <div className='text-box-style'><BasicTextField label="Country" id="country" style={{ width: '100%' }} /></div>
+                </Grid>
+              </Grid>
             </CustomAccordion>
           </Box>
         );
       case 3:
         return (
           <Box>
-            <CustomLabel text={"Almost Done"} style={labelStyle}> </CustomLabel>
-            <CustomLabel text={"Please upload relevent agency documents"} style={labelStyle2}> </CustomLabel>
-            <div className='text-box-style'><BasicTextField label="Name" id="name" /></div>
-            <div className='text-box-style'><BasicTextField label="Type" id="type" /></div>
+            <CustomLabel text={"Almost Done"} type={'large'} />
+            <CustomLabel text={"Please upload relevant agency documents"} type={'normal'} />
+            <Grid container spacing={2}>
+              <Grid item xs={12} md={6}>
+                <div className='text-box-style'><BasicTextField label="Name" id="name" style={{ width: '100%' }} /></div>
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <div className='text-box-style'><BasicTextField label="Type" id="type" style={{ width: '100%' }} /></div>
+              </Grid>
+            </Grid>
           </Box>
+
         );
       default:
         return 'Unknown Step';
