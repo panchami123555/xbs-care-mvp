@@ -12,7 +12,8 @@ import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CustomLabel from './components/xbs-input-fields/label';
-
+import Box from '@mui/material/Box';
+import CustomCard from './components/xbs-card/card';
 
 
 function Test() {
@@ -64,17 +65,44 @@ function Test() {
 
           <CustomAlert severity="success" label="This is a success Alert." />
           <CustomAlert severity="info" label="This is a info message." />
-
-          <Card className='mt-4 mb-4 ml-4 mr-4'>
+          <Box
+      max-height={600}
+      width={600} >
+          <Card className='mt-4 mb-4  mr-4'>
             <CardContent>
-              <CustomLabel text="Terms and Conditions" variant="h6" color="primary">
+              <CustomLabel text="Terms and Conditions" className="text-bold" variant="h6" color="#194A9F">
               </CustomLabel>
-              <CustomLabel text="Your Agreement" variant="subtitle2" >
+              <CustomLabel text="Your Agreement" variant="subtitle2" color="#132F41"  >
               </CustomLabel>
-
+              <CustomLabel text="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos
+        blanditiis tenetur unde suscipit, quam beatae rerum inventore consectetur,
+        neque doloribus, cupiditate numquam dignissimos laborum fugiat deleniti? Eum
+        quasi quidem quibusdam.
+        " variant="body2" />
+        <CustomLabel text="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos
+        blanditiis tenetur unde suscipit, quam beatae rerum inventore consectetur,
+        neque doloribus, cupiditate numquam dignissimos laborum fugiat deleniti? Eum
+        quasi quidem quibusdam.
+        " variant="body2" />
+        <CustomLabel text="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos
+        blanditiis tenetur unde suscipit, quam beatae rerum inventore consectetur,
+        neque doloribus, cupiditate numquam dignissimos laborum fugiat deleniti? Eum
+        quasi quidem quibusdam.
+        " variant="body2" />
+        <CustomLabel text="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos
+        blanditiis tenetur unde suscipit, quam beatae rerum inventore consectetur,
+        neque doloribus, cupiditate numquam dignissimos laborum fugiat deleniti? Eum
+        quasi quidem quibusdam.
+        " variant="body2" />
+              
 
             </CardContent>
           </Card>
+
+          
+          </Box>
+
+          <CustomCard></CustomCard>
         </div>
       </div>
 
