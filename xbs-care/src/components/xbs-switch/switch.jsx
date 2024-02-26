@@ -4,71 +4,80 @@ import { styled } from '@mui/material/styles';
 import { Typography, Stack } from '@mui/material';
 
 const labelStyle = {
-  // color: '#194A9F',
   fontSize: '15px',
-  fontWeight: 600,
   lineHeight: 'normal',
-  width: '100%',
   textAlign: 'left',
-  marginBottom: '1rem',
-  paddingTop: '3%',
-}
+  paddingTop: '1%',
+};
+
 const AntSwitch = styled(Switch)(({ theme }) => ({
-    width: 28,
-    height: 16,
-    padding: 0,
-    display: 'flex',
-    '&:active': {
-      '& .MuiSwitch-thumb': {
-        width: 15,
-      },
-      '& .MuiSwitch-switchBase.Mui-checked': {
-        transform: 'translateX(9px)',
-      },
-    },
-    '& .MuiSwitch-switchBase': {
-      padding: 2,
-      '&.Mui-checked': {
-        transform: 'translateX(12px)',
-        color: '#fff',
-        '& + .MuiSwitch-track': {
-          opacity: 1,
-          backgroundColor: theme.palette.mode === 'dark' ? '#177ddc' : '#1890ff',
-        },
-      },
-    },
+  width: 28,
+  height: 16,
+  padding: 0,
+  display: 'flex',
+  '&:active': {
     '& .MuiSwitch-thumb': {
-      boxShadow: '0 2px 4px 0 rgb(0 35 11 / 20%)',
-      width: 12,
-      height: 12,
-      borderRadius: 6,
-      transition: theme.transitions.create(['width'], {
-        duration: 200,
-      }),
+      width: 15,
     },
-    '& .MuiSwitch-track': {
-      borderRadius: 16 / 2,
-      opacity: 1,
-      backgroundColor:
-        theme.palette.mode === 'dark' ? 'rgba(255,255,255,.35)' : 'rgba(0,0,0,.25)',
-      boxSizing: 'border-box',
+    '& .MuiSwitch-switchBase.Mui-checked': {
+      transform: 'translateX(9px)',
     },
-  }));
+  },
+  '& .MuiSwitch-switchBase': {
+    padding: 2,
+    '&.Mui-checked': {
+      transform: 'translateX(12px)',
+      color: '#fff',
+      '& + .MuiSwitch-track': {
+        opacity: 1,
+        backgroundColor: theme.palette.mode === 'dark' ? '#177ddc' : '#1890ff',
+      },
+    },
+  },
+  '& .MuiSwitch-thumb': {
+    boxShadow: '0 2px 4px 0 rgb(0 35 11 / 20%)',
+    width: 12,
+    height: 12,
+    borderRadius: 6,
+    transition: theme.transitions.create(['width'], {
+      duration: 200,
+    }),
+  },
+  '& .MuiSwitch-track': {
+    borderRadius: 16 / 2,
+    opacity: 1,
+    backgroundColor:
+      theme.palette.mode === 'dark' ? 'rgba(255,255,255,.35)' : 'rgba(0,0,0,.25)',
+    boxSizing: 'border-box',
+  },
+}));
 
 const CustomSwitch = ({ label, checked, onChange }) => {
+  debugger
+  const handleChange = (event) => {
+    if(onChange) {
+      onChange(event);
+    }
+    
+    window.scrollTo({
+      top: 600,
+      behavior: 'smooth',
+    });
+  };
+
   return (
-    <>
+    <Stack direction="row" alignItems="center" spacing={1}>
       <Typography style={labelStyle}>{label}</Typography>
-      <Stack direction="row" spacing={1} alignItems="center">
-        <Typography>Yes</Typography>
-        <AntSwitch
-          checked={checked}
-          onChange={onChange}
-          inputProps={{ 'aria-label': 'ant design' }}
-        />
-        <Typography>No</Typography>
-      </Stack>
-    </>
+      <Typography style={{paddingLeft:'1%', paddingTop:'1%'}}>Yes</Typography>
+      <div  style={{paddingLeft:'1%', paddingTop:'1%'}}>
+      <AntSwitch
+        checked={checked}
+        onChange={handleChange} // Use the modified handler here
+        inputProps={{ 'aria-label': 'ant design' }}
+      />
+      </div>
+      <Typography style={{paddingLeft:'1%', paddingTop:'1%'}}>No</Typography>
+    </Stack>
   );
 };
 

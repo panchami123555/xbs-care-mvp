@@ -15,22 +15,12 @@ const defaultStyle = {
     display: 'flex', 
 };
 
-const labelStyle = {
-    color: '#194A9F',
-    fontSize: '20px',
-    fontWeight: 600,
-    lineHeight: 'normal',
-    width: '100%',
-    textAlign: 'left',
-    marginBottom: '1rem',
-    paddingTop: '3%',
-};
 
 const CustomCard = ({ title, content, style }) => {
     return (
         <Card sx={{ ...defaultStyle, ...style }}>
             <CardContent sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
-                {title && <CustomLabel text={title} style={labelStyle} />}
+                {title && <CustomLabel text={title} type={'large'} />}
                 <div style={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
                 {content}
                 </div>

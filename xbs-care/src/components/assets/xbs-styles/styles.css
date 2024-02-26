@@ -116,3 +116,27 @@
   justify-content: 'center';
   align-items: 'center';
 }
+
+.image-grid {
+  display: 'flex';
+  justify-content: 'center';
+  align-items: 'center';
+}
+
+.image-style{
+  height: 97%;
+    padding-left: 15%;
+    padding-top: 11%;
+    width: 94%;
+}
+
+/* .large-Text {
+  color: #194A9F;
+  fontSize: 20px,
+  fontWeight: 600,
+  lineHeight: 'normal',
+  width: '100%',
+  textAlign: 'left',
+  marginBottom: '1rem',
+  paddingTop: '3%',
+} */
