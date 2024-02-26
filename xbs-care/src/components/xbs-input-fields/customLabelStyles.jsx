@@ -38,6 +38,10 @@ const styles = {
     marginBottom: '1rem',
     paddingTop: '2%',
   },
+  headingMain: {
+    fontSize: '32px',
+   
+  },
 };
 
 export default styles;

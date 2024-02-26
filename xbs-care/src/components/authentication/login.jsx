@@ -35,7 +35,7 @@ export default function Login() {
       >
         <Grid container>
           <CssBaseline />
-          <Grid
+          <Grid 
             item
             xs={false}
             sm={4}
@@ -62,18 +62,18 @@ export default function Login() {
               className="flex-column d-flex "
             >
              
-              <CustomLabel variant="h4" text="Welcome!"></CustomLabel>
+              <CustomLabel   text="Welcome!" type='headingMain'></CustomLabel>
               <Box
                 component="form"
                 noValidate
                 sx={{ mt: 1 }}
               >
                 <BasicTextField label="Username"  
-                validate={true}  size='small' value={username} onChange={(e) => setUsername(e.target.value)} />
-                <PasswordField label="Password" size='small' value={password} onChange={(e) => setPassword(e.target.value)} />
+                validate={true}  type='small' value={username}  fullwidth onChange={(e) => setUsername(e.target.value)} />
+                <PasswordField label="Password"  type='small'   fullwidth value={password} onChange={(e) => setPassword(e.target.value)} />
                 <div className="mt-3 mb-3">
 
-                <BasicButton type="submit" label="Sign In" onClick={handleButtonClick}  />
+                <BasicButton type="submit" label="Sign In" onClick={handleButtonClick} className='rounded-button'  />
 
                 </div>
                 

@@ -56,7 +56,7 @@ export default function ForgotPassword() {
             >
                
 
-              <CustomLabel variant="h4" text="Forgot Password"></CustomLabel>
+              <CustomLabel  type='headingMain' text="Forgot Password"></CustomLabel>
 
              
                     <CustomLabel variant="subtitle2" sx={{mt:1}} text=" Enter the email you used to create your account to reset password"></CustomLabel>
@@ -66,13 +66,13 @@ export default function ForgotPassword() {
                 noValidate
                 sx={{ mt: 1 }}
               >
-                <BasicTextField label="Email" size='small' value={username} onChange={(e) => setUsername(e.target.value)} />
+                <BasicTextField label="Email"  type='small'   fullwidth value={username} onChange={(e) => setUsername(e.target.value)} />
                 <div className="mt-3 mb-3">
-                <BasicButton type="submit" label="Send Request" onClick={handleButtonClick} />
+                <BasicButton type="submit" label="Send Request" className='rounded-button' onClick={handleButtonClick} />
 
                 </div>
                 <div className="mb-2 ">
-                <BasicButton type="submit"  variant="outlined"  label="Back to Login" onClick={handleBackClick} />
+                <BasicButton type="submit"  variant="outlined"  className='rounded-button' label="Back to Login" onClick={handleBackClick} />
 
                 </div>
                

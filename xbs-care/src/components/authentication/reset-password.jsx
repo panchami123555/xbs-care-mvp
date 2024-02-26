@@ -11,12 +11,12 @@ import BasicButton from "../xbs-buttons/basic-button";
 import { PasswordField } from "../xbs-input-fields/password-text-field.jsx";
 import CustomLabel from "../xbs-input-fields/label.jsx";
 export default function ResetPassword() {
-    const navigate = useNavigate();
-  const [tempPass,setTemppass] = useState('');
-  const [newPass,setNewppass] = useState('');
-  const [confirmPass,setCOnfirmpass] = useState('');
+  const navigate = useNavigate();
+  const [tempPass, setTemppass] = useState('');
+  const [newPass, setNewppass] = useState('');
+  const [confirmPass, setCOnfirmpass] = useState('');
 
-  
+
   const handleButtonClick = () => {
 
 
@@ -39,7 +39,7 @@ export default function ResetPassword() {
             md={7}
             className=" img-fluid home-logo"
           >
-            
+
           </Grid>
           <Grid
             item
@@ -57,30 +57,31 @@ export default function ResetPassword() {
               }}
               className="flex-column d-flex "
             >
-              
-               <CustomLabel variant="h4" text="Reset Password"></CustomLabel>
-               <CustomLabel variant="subtitle2" text=" Choose a new password for your account"></CustomLabel>
-             
+
+              <CustomLabel  type='headingMain' text="Reset Password"></CustomLabel>
+              <CustomLabel variant="subtitle2" text=" Choose a new password for your account"></CustomLabel>
+
               <Box
                 component="form"
                 noValidate
                 sx={{ mt: 1 }}
               >
-                <PasswordField label="Temporary Password" size='small' value={tempPass} onChange={(e) => setTemppass(e.target.value)} />
+                <PasswordField label="Temporary Password" type='small' fullwidth value={tempPass} onChange={(e) => setTemppass(e.target.value)} />
                 <div className="mt-n1">
-                <PasswordField label="New Password" size='small' value={newPass} onChange={(e) => setNewppass(e.target.value)} />
+                  <PasswordField label="New Password" type='small' fullwidth value={newPass} onChange={(e) => setNewppass(e.target.value)} />
 
                 </div>
-                <PasswordField label="Confirm Password" size='small' value={confirmPass} onChange={(e) => setCOnfirmpass(e.target.value)} />
+
+                <PasswordField label="Confirm Password" type='small' fullwidth value={confirmPass} onChange={(e) => setCOnfirmpass(e.target.value)} />
 
                 <div className="mt-3 mb-3">
 
-                <BasicButton type="submit" label="Reset" onClick={handleButtonClick}  />
+                  <BasicButton type="submit" label="Reset" className='rounded-button' onClick={handleButtonClick} />
                 </div>
                 <div className="mt-2 mb-2">
-                <BasicButton type="submit"  variant="outlined"  label="Back to Login" onClick={handleBackClick} />
+                  <BasicButton type="submit" variant="outlined" className='rounded-button' label="Back to Login" onClick={handleBackClick} />
                 </div>
-                
+
               </Box>
             </Box>
           </Grid>

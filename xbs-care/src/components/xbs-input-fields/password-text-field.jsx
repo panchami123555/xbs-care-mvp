@@ -21,7 +21,7 @@ export const PasswordField = ({ label, value, onChange,size }) => {
       fullWidth
       size={size}
       variant="outlined" 
-      className="mb-3 mt-3"
+      className="mb-2 mt-2"
       InputProps={{
         endAdornment: (
           <InputAdornment position="end">
