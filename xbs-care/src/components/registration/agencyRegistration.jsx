@@ -1,5 +1,5 @@
 // Import necessary components and styles
-import { React, useState } from 'react';
+import { React, useState, useEffect, useRef  } from 'react';
 import { Box, Grid } from '@mui/material';
 import StepperComponent from '../stepper/stepper.jsx';
 import '../assets/xbs-styles/agencyRegister.css';
@@ -16,10 +16,15 @@ import agencyLedImg from '../assets/images/agencyLed.svg'
 
 function RegistrationForm() {
   const [isTradingAddressSame, setIsTradingAddressSame] = useState(false);
-
+  const tradingAddressRef = useRef(null);
   const handleToggleChange = (event) => {
     setIsTradingAddressSame(event.target.checked);
   };
+  useEffect(() => {
+    if (isTradingAddressSame && tradingAddressRef.current) {
+      tradingAddressRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }, [isTradingAddressSame]); 
   const getStepContent = (step) => {
     switch (step) {
       case 0:
@@ -59,7 +64,7 @@ function RegistrationForm() {
             </Grid>
             <Grid container spacing={2} paddingTop={'3%'}>
               <Grid item xs={6} md={2}>
-                <CustomLabel text={"Trading Address"} type={'medium'}/>
+                <CustomLabel text={"Trading Address"} type={'mediumTrad'}/>
               </Grid>
               <Grid item xs={4} md={6}>
                 <CustomSwitch
@@ -70,7 +75,7 @@ function RegistrationForm() {
               </Grid>
             </Grid>
 
-
+            <div ref={isTradingAddressSame ? tradingAddressRef : null}>
             {isTradingAddressSame && (
               <>
                 <Grid container spacing={2}>
@@ -87,6 +92,7 @@ function RegistrationForm() {
                 </Grid>
               </>
             )}
+            </div>
           </Box>
         );
       case 2:

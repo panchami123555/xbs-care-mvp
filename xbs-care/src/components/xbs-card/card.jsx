@@ -1,6 +1,7 @@
 import React from 'react';
-import { Card, CardContent, Typography } from '@mui/material';
+import { Card, CardContent } from '@mui/material';
 import CustomLabel from '../xbs-input-fields/label';
+// import '../assets/xbs-styles/styles.css';
 
 const defaultStyle = {
     width: '80vw',

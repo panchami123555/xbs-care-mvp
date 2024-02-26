@@ -261,3 +261,27 @@
 font-size: var(heading-font-size-login) !important;
 
 }
+
+/* .customCard {
+  width: 80vw;
+  height: 64vh;
+  border-radius: 40px;
+  background: #FFF;
+  box-shadow: 10px 10px 32px 2px #194A9F, 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-items: flex-start;
+  padding: 2rem;
+  overflow: auto;
+}
+
+.cardContent {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.contentWrapper {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+} */
