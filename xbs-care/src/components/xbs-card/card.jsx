@@ -11,7 +11,7 @@ const defaultStyle = {
     display: 'flex',
     alignItems: 'flex-start',
     padding: '2rem',
-    overflowY: 'auto',
+    overflow: 'auto',
     display: 'flex', 
 };
 

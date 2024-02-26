@@ -111,6 +111,7 @@
   top: 7%;
   left: 5%;
   padding: 20px;
+  overflow: hidden;
 }
 
 .logoImage {
@@ -203,19 +204,46 @@
 }
 
 .image-style{
-  height: 97%;
+    height: 90%;
     padding-left: 15%;
     padding-top: 11%;
     width: 94%;
 }
+.image-led-style{
+    height: 90%;
+    padding-left: 15%;
+    padding-top: 2%;
+    width: 94%;
+}
 
-/* .large-Text {
+.large {
   color: #194A9F;
-  fontSize: 20px,
-  fontWeight: 600,
-  lineHeight: 'normal',
-  width: '100%',
-  textAlign: 'left',
-  marginBottom: '1rem',
-  paddingTop: '3%',
-} */
+  font-size: 20px;
+  font-weight: 600;
+  line-height: normal;
+  width: 100%;
+  text-align: left;
+  margin-bottom: 1rem;
+  padding-top: 3%;
+}
+
+.medium {
+  color: #194A9F;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: normal;
+  width: 100%;
+  text-align: left;
+  margin-bottom: 1rem;
+  padding-top: 2%;
+}
+
+.normal {
+  font-size: 15px;
+  font-weight: 600;
+  line-height: normal;
+  width: 100%;
+  text-align: left;
+  margin-bottom: 1rem;
+  padding-top: 2%;
+}

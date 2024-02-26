@@ -11,7 +11,8 @@ import CustomAccordion from '../xbs-accordion/accordion.jsx';
 import CustomSwitch from '../xbs-switch/switch.jsx';
 import CustomCard from '../xbs-card/card.jsx';
 import CustomContainer from '../xbs-container/container.jsx';
-import agencyImage from '../assets/images/agency.png'
+import agencyRegImg from '../assets/images/agencyReg.svg'
+import agencyLedImg from '../assets/images/agencyLed.svg'
 
 function RegistrationForm() {
   const [isTradingAddressSame, setIsTradingAddressSame] = useState(false);
@@ -34,7 +35,7 @@ function RegistrationForm() {
               </Box>
             </Grid>
             <Grid item xs={12} md={6} className='image-grid'>
-              <img src={agencyImage} className='image-style' />
+              <img src={agencyRegImg} className='image-style' />
             </Grid>
           </Grid>
         );
@@ -103,7 +104,7 @@ function RegistrationForm() {
                   <div className='text-box-style'><BasicTextField label="Number of Clients" id="nClients" style={{ width: '90%' }} /></div>
                 </Grid>
                 <Grid item xs={12} md={6} className='image-grid'>
-                  <img src={agencyImage} className='image-style' />
+                  <img src={agencyLedImg} className='image-led-style' />
                 </Grid>
               </Grid>
             </CustomAccordion>

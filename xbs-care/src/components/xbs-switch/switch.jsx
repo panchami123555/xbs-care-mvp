@@ -24,11 +24,11 @@ const CustomSwitch = ({ label, checked, onChange }) => {
     <div className="custom-switch">
     <Stack direction="row" alignItems="center" spacing={1}>
       <Typography className="switch-label">{label}</Typography>
-      <Typography style={{paddingLeft:'1%', paddingTop:'1%'}}>Yes</Typography>
-      <div  style={{paddingLeft:'1%', paddingTop:'1%'}}>
+      <Typography>Yes</Typography>
+      <div>
       <Switch checked={checked} onChange={handleChange} inputProps={{ 'aria-label': 'ant design' }} />
       </div>
-      <Typography style={{paddingLeft:'1%', paddingTop:'1%'}}>No</Typography>
+      <Typography>No</Typography>
     </Stack>
     </div>
 
