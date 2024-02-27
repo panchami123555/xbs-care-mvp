@@ -85,6 +85,11 @@ export default function ResetPassword() {
               </Box>
             </Box>
           </Grid>
+          <Grid item xs={12} > 
+        <p className="logo-label">
+         Care Co-ordination made simpler
+        </p>
+      </Grid>
         </Grid>
       </Box>
     </Container>

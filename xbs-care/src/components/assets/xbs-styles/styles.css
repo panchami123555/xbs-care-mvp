@@ -12,6 +12,7 @@
   --width-100:120%;
   --width-90:90%;
   --font-size-login:32px;
+  --text-field-border-color:#00A2E7;
 
 }
 
@@ -36,6 +37,14 @@
 .navigate-button {
   background-color: var(--navigate-button-color) !important;
 }
+
+.logo-label{
+  margin-top:-2rem ;
+  margin-left:10rem ;
+  color:#00A2E7 ;
+  font-size:1.5rem ;
+}
+
 
 /* stepper styles */
 
@@ -261,7 +270,14 @@
 font-size: var(heading-font-size-login) !important;
 
 }
+.custom-textfield {
+  fieldset {
+    border-color: var(--text-field-border-color) !important; 
+  }
 
+ 
+  
+}
 /* .customCard {
   width: 80vw;
   height: 64vh;
