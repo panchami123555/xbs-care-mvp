@@ -6,7 +6,6 @@ import '../assets/xbs-styles/styles.css'
 
 
 const CustomSwitch = ({ label, checked, onChange }) => {
-  debugger
   const handleChange = (event) => {
     if(onChange) {
       onChange(event);
