@@ -5,7 +5,7 @@ import CustomLabel from '../xbs-input-fields/label';
 
 const defaultStyle = {
     width: '80vw',
-    height: '90vh',
+    height: '85vh',
     borderRadius: '40px',
     background: '#FFF',
     boxShadow: '10px 10px 32px 2px #194A9F, 0px 4px 4px 0px rgba(0, 0, 0, 0.25)',

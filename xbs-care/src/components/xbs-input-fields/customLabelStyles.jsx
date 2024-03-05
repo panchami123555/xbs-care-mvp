@@ -50,8 +50,15 @@ const styles = {
   },
   headingMain: {
     fontSize: '32px',
-   
+
   },
+  allSet: {
+    color: '#040308',
+    fontSize: '2rem',
+    fontStyle: 'italic',
+    fontWeight: 300,
+    lineHeight: 'normal',
+  }
 };
 
 export default styles;

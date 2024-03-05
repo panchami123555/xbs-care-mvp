@@ -1,12 +1,23 @@
 import React, { useState } from 'react';
+import '../assets/xbs-styles/styles.css';
 
 const FileUploadComponent = ({ onFileChange, onUpload }) => {
   const [selectedFile, setSelectedFile] = useState(null);
+  const [fileName, setFileName] = useState('');
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
-    setSelectedFile(file);
-    onFileChange && onFileChange(file);
+    if (file) {
+      setSelectedFile(file);
+      setFileName(file.name);
+      onFileChange && onFileChange(file);
+    }
+  };
+
+  const handleRemoveFile = () => {
+    setSelectedFile(null);
+    setFileName('');
+    document.getElementById('file').value = '';
   };
 
   const handleUpload = () => {
@@ -19,8 +30,21 @@ const FileUploadComponent = ({ onFileChange, onUpload }) => {
 
   return (
     <div>
-      <input type="file" onChange={handleFileChange} />
-      <button onClick={handleUpload}>Upload</button>
+      <div className="file-input-container">
+        <input 
+          type="file" 
+          id="file" 
+          className="file-input" 
+          onChange={handleFileChange} 
+        />
+        <label htmlFor="file" className="file-input-label">Choose file</label>
+        {fileName && (
+          <span className="file-name">{fileName}
+            <button className="remove-btn" onClick={handleRemoveFile}>X</button>
+          </span>
+        )}
+      </div>
+      <button className="upload-btn" onClick={handleUpload}>Upload File</button>
     </div>
   );
 };

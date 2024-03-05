@@ -1,29 +1,47 @@
-// StepperComponent.js
+import React, { useState, useRef } from 'react';
 import Diversity3OutlinedIcon from '@mui/icons-material/Diversity3Outlined';
 import GroupAddIcon from '@mui/icons-material/GroupAdd';
 import PeopleOutlineIcon from '@mui/icons-material/PeopleOutline';
 import TextSnippetOutlinedIcon from '@mui/icons-material/TextSnippetOutlined';
 import { Box, Button, Step, Stepper } from '@mui/material';
-import React, { useState } from 'react';
 import '../assets/xbs-styles/styles.css'
 import StepButton from '@mui/material/StepButton';
+import Esignature from '@mui/icons-material/DriveFileRenameOutlineOutlined';
+import CustomLabel from '../xbs-input-fields/label';
 
-const StepperComponent = ({ getStepContent }) => {
+const StepperComponent = ({ getStepContent, isAuthorized }) => {
   const [activeStep, setActiveStep] = useState(0);
+  const [isCompleted, setIsCompleted] = useState(false);
+  const stepperRef = useRef(null);
   const steps = [{ label: 'Agency Details', icon: <PeopleOutlineIcon /> },
   { label: 'Address Details', icon: <GroupAddIcon /> },
   { label: 'Leadership Details', icon: <Diversity3OutlinedIcon /> },
   { label: 'Documents', icon: <TextSnippetOutlinedIcon /> },
+  { label: 'E-signature', icon: <Esignature /> },
   ];
 
 
   const handleNext = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    const nextStep = activeStep + 1;
+    setActiveStep(nextStep);
+    console.log('ACTIVE STEP', activeStep);
+    if (nextStep === 5) {
+      setIsCompleted(true);
+    }
+    scrollToStepper();
   };
 
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
+    scrollToStepper();
   };
+
+  const scrollToStepper = () => {
+    if (stepperRef.current) {
+      stepperRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
   const CustomStepIcon = (props) => {
     const { active, completed } = props;
 
@@ -40,57 +58,79 @@ const StepperComponent = ({ getStepContent }) => {
   };
   const currentStep = steps[activeStep];
   return (
-    <Box  className="flex-grow-1 d-flex flex-column">
-      <Stepper activeStep={activeStep} className="stepper" >
-        {steps.map((step, index) => {
-          const stepProps = {};
-          const labelProps = {};
+    <div ref={stepperRef}>
 
-          return (
-            <Step key={index} {...stepProps} >
-              <div className={`step-container ${activeStep === index ? 'active-step' : 'inactive-step'}`}>
-                <StepButton onClick={handleStep(index)} icon={<CustomStepIcon icon={step.icon} />} {...labelProps}>
+      <Box className="flex-grow-1 d-flex flex-column">
+      {!isCompleted && ( <CustomLabel text={"Welcome to XBS Care!"} type={'large'} /> )}
+        <Stepper activeStep={activeStep} className="stepper">
+          {steps.map((step, index) => {
+            const stepProps = {};
+            const labelProps = {};
+
+            return (
+              <Step key={index} {...stepProps} >
+                {!isCompleted && (
+                  <div className={`step-container ${activeStep === index ? 'active-step' : 'inactive-step'}`}>
+                    <StepButton onClick={handleStep(index)} icon={<CustomStepIcon icon={step.icon} />} {...labelProps}>
 
 
-                  {step.label}
+                      {step.label}
 
-                </StepButton>
-              </div>
-            </Step>
+                    </StepButton>
+                  </div>)}
+              </Step>
 
-          );
+            );
 
-        })}
-      </Stepper>
-      <div>
-        {getStepContent(activeStep)}
-        <Box sx={{ display: 'flex', justifyContent: 'flex-end', paddingTop: '1rem', marginRight: '20px' }} className="d-flex ">
-          <Button
-            disabled={activeStep === 0}
-            onClick={handleBack}
-            variant="contained"
-            sx={{
-              backgroundColor: '#123B94',
-              '&:hover': { backgroundColor: '#0f2c6d' },
-              marginRight: '8px' // Add right margin to the first button
-            }}
-          >
-            Back
-          </Button>
-          <Button
-            onClick={handleNext}
-            variant="contained"
-            sx={{
-              backgroundColor: '#123B94',
-              '&:hover': { backgroundColor: '#0f2c6d' }
-            }}
-          >
-            {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
-          </Button>
-        </Box>
-
-      </div>
-    </Box>
+          })}
+        </Stepper>
+        <div>
+          {getStepContent(activeStep)}
+          {!isCompleted && (
+            <Box sx={{ display: 'flex', justifyContent: 'flex-end', paddingTop: '1rem', marginRight: '20px' }} className="d-flex ">
+              <Button
+                disabled={activeStep === 0}
+                onClick={handleBack}
+                variant="contained"
+                sx={{
+                  borderRadius: '10px',
+                  backgroundColor: '#123B94',
+                  '&:hover': { backgroundColor: '#0f2c6d' },
+                  marginRight: '8px' // Add right margin to the first button
+                }}
+              >
+                Back
+              </Button>
+              <Button
+                onClick={handleNext}
+                variant="contained"
+                sx={{
+                  borderRadius: '10px',
+                  backgroundColor: '#123B94',
+                  '&:hover': { backgroundColor: '#0f2c6d' }
+                }}
+              >
+                {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+              </Button>
+            </Box>
+          )}
+          {isCompleted && (
+            <Box sx={{ display: 'flex', justifyContent: 'flex-end', paddingTop: '1rem', marginRight: '20px' }} className="d-flex ">
+              <Button
+                variant="contained"
+                sx={{
+                  borderRadius: '10px',
+                  backgroundColor: '#123B94',
+                  '&:hover': { backgroundColor: '#0f2c6d' },
+                }}
+              >
+                Done
+              </Button>
+            </Box>
+          )}
+        </div>
+      </Box>
+    </div>
   );
 };
 

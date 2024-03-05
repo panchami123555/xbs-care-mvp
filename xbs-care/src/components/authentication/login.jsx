@@ -69,9 +69,9 @@ export default function Login() {
                 noValidate
                 sx={{ mt: 1 }}
               >
-                <BasicTextField label="Username"  
-                validate={true}  type='small' value={username}  fullwidth onChange={(e) => setUsername(e.target.value)} />
-                <PasswordField label="Password"  type='small'   fullwidth value={password} onChange={(e) => setPassword(e.target.value)} />
+                <BasicTextField label="Username"  style={{width: '100%',}}
+                validate={true}  size='small' value={username} onChange={(e) => setUsername(e.target.value)} />
+                <PasswordField label="Password" size='small' value={password} onChange={(e) => setPassword(e.target.value)} />
                 <div className="mt-3 mb-3">
 
                 <BasicButton type="submit" label="Sign In" onClick={handleButtonClick} className='rounded-button'  />
