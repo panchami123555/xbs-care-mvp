@@ -13,19 +13,28 @@ const StepperComponent = ({ getStepContent, isAuthorized }) => {
   const [activeStep, setActiveStep] = useState(0);
   const [isCompleted, setIsCompleted] = useState(false);
   const stepperRef = useRef(null);
-  const steps = [{ label: 'Agency Details', icon: <PeopleOutlineIcon /> },
-  { label: 'Address Details', icon: <GroupAddIcon /> },
-  { label: 'Leadership Details', icon: <Diversity3OutlinedIcon /> },
-  { label: 'Documents', icon: <TextSnippetOutlinedIcon /> },
-  { label: 'E-signature', icon: <Esignature /> },
+  const steps = [
+    { label: 'Agency Details', icon: <PeopleOutlineIcon /> },
+    { label: 'Address Details', icon: <GroupAddIcon /> },
+    { label: 'Leadership Details', icon: <Diversity3OutlinedIcon /> },
+    { label: 'Documents', icon: <TextSnippetOutlinedIcon /> },
+    { label: 'E-signature', icon: <Esignature /> },
   ];
 
-
   const handleNext = () => {
+    debugger
     const nextStep = activeStep + 1;
-    setActiveStep(nextStep);
-    console.log('ACTIVE STEP', activeStep);
-    if (nextStep === 5) {
+    if(nextStep == 4){
+    if(isAuthorized == false){
+        setActiveStep('5');
+        setIsCompleted(true);
+      } else{
+        setActiveStep(nextStep);
+      }
+    } else {
+      setActiveStep(nextStep);
+    }
+    if (nextStep === steps.length) {
       setIsCompleted(true);
     }
     scrollToStepper();
@@ -44,44 +53,44 @@ const StepperComponent = ({ getStepContent, isAuthorized }) => {
 
   const CustomStepIcon = (props) => {
     const { active, completed } = props;
-
     return (
-      <div
-
-      >
+      <div>
         {completed ? props.icon : props.icon}
       </div>
     );
   };
+
   const handleStep = (step) => () => {
     setActiveStep(step);
   };
+
   const currentStep = steps[activeStep];
+
+  const shouldSkipStep4 = () => {
+    return !isAuthorized && activeStep === 4;
+  };
+
   return (
     <div ref={stepperRef}>
-
       <Box className="flex-grow-1 d-flex flex-column">
-      {!isCompleted && ( <CustomLabel text={"Welcome to XBS Care!"} type={'large'} /> )}
+        {!isCompleted && (<CustomLabel text={"Welcome to XBS Care!"} type={'large'} />)}
         <Stepper activeStep={activeStep} className="stepper">
           {steps.map((step, index) => {
             const stepProps = {};
             const labelProps = {};
-
+            if (!isAuthorized && index === 4) {
+              return null;
+            }
             return (
-              <Step key={index} {...stepProps} >
+              <Step key={index} {...stepProps}>
                 {!isCompleted && (
                   <div className={`step-container ${activeStep === index ? 'active-step' : 'inactive-step'}`}>
                     <StepButton onClick={handleStep(index)} icon={<CustomStepIcon icon={step.icon} />} {...labelProps}>
-
-
                       {step.label}
-
                     </StepButton>
                   </div>)}
               </Step>
-
             );
-
           })}
         </Stepper>
         <div>
@@ -110,7 +119,7 @@ const StepperComponent = ({ getStepContent, isAuthorized }) => {
                   '&:hover': { backgroundColor: '#0f2c6d' }
                 }}
               >
-                {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+                {activeStep === steps.length - 1 || (!isAuthorized && activeStep === 3) ? 'Finish' : 'Next'}
               </Button>
             </Box>
           )}

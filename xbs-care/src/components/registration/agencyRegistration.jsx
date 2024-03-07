@@ -39,7 +39,15 @@ function RegistrationForm() {
   };
   const [isAuthorized, setIsAuthorized] = useState(false);
   const handleAuthorizedChange = (event) => {
-    setIsAuthorized(event.target.checked);
+    // setIsAuthorized(event.target.checked);
+    const signedEmail = localStorage.getItem('email');
+    const leadershipEmail = document.getElementById(':r13:')?.value;
+    console.log('Leadership email', leadershipEmail);
+    if (signedEmail === leadershipEmail) {
+      setIsAuthorized(true);
+    } else {
+      setIsAuthorized(false);
+    }
   };
   useEffect(() => {
     if (isTradingAddressSame && tradingAddressRef.current) {
