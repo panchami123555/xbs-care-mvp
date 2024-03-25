@@ -6,8 +6,20 @@ import { Grid } from '@mui/material';
 import Button from '@mui/material/Button';
 import AddIcon from '@mui/icons-material/Add';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import agencyPendingIcon from '../assets/icons/Hourglass.svg';
+import agencyReviewIcon from '../assets/icons/file-search-02.svg';
+import agencyApprovedIcon from '../assets/icons/check-circle.svg';
 
-function Card({ title, content, onClick }) {
+function Card({ title, content, onClick, icon, iconStyle }) {
+
+    const defaultIconStyle = {
+        display: 'flex',
+        padding: '10px',
+        alignItems: 'center',
+        gap: '10px',
+        justifyContent: 'center',
+    };
+
     return (
         <div
             style={{
@@ -19,8 +31,9 @@ function Card({ title, content, onClick }) {
                 cursor: 'pointer'
             }}
             onClick={onClick}>
-            <h4>{title}</h4>
-            <p>{content}</p>
+            <img src={icon} alt="icon" style={{...defaultIconStyle, ...iconStyle}}/>
+            <h4 style={{ color: '#797979', paddingTop: 10 }}>{title}</h4>
+            <p style={{fontWeight: 'bold'}}>{content}</p>
         </div>
     );
 }
@@ -74,12 +87,27 @@ function Dashboard() {
         setIsTableVisible(true);
     };
 
+    const pendingIconStyle = {
+        borderRadius: '26px',
+        background: '#D398E7',
+    };
+
+    const reviewIconStyle = {
+        borderRadius: '26px',
+        background: '#E89271',
+    };
+
+    const approvedIconStyle = {
+        borderRadius: '26px',
+        background: '#70A1E5',
+    };
+
     return (
-        <div style={{ paddingLeft: '200px', paddingTop: '50px' }}>
+        <div style={{ paddingLeft: '150px', paddingTop: '50px' }}>
             <div style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center' }}>
-                <Card title="Agency Pending" content="614" onClick={handleCardClick} />
-                <Card title="Agency In-Review" content="121" onClick={handleCardClick} />
-                <Card title="Agency Approved" content="528" onClick={handleCardClick} />
+                <Card title="Agency Pending" content="614" onClick={handleCardClick} icon={agencyPendingIcon} iconStyle={pendingIconStyle} />
+                <Card title="Agency In-Review" content="121" onClick={handleCardClick} icon={agencyReviewIcon} iconStyle={reviewIconStyle} />
+                <Card title="Agency Approved" content="528" onClick={handleCardClick} icon={agencyApprovedIcon} iconStyle={approvedIconStyle} />
 
                 {isTableVisible && (
                     <>

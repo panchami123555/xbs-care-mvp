@@ -3,6 +3,7 @@ import React from 'react';
 import NavBar from './navBar.js';
 import Header from './header.js';
 import ContentArea from './dashboard.js';
+import Profile from './profile.jsx';
 
 const Dashboard = () => {
     return (
@@ -11,6 +12,7 @@ const Dashboard = () => {
         <NavBar /> 
           <Header />
           <ContentArea />
+          {/* <Profile /> */}
         </div>
       </div>
     );
