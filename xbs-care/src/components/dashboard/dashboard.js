@@ -21,17 +21,17 @@ function Card({ title, content, onClick }) {
 
 const dashboardColumns = [
     { field: 'id', headerName: 'ID', width: 100 },
-    { field: 'firstName', headerName: 'First name', width: 350 },
-    { field: 'lastName', headerName: 'Last name', width: 300 },
+    { field: 'firstName', headerName: 'Agency name', width: 350 },
+    { field: 'lastName', headerName: 'Admin name', width: 300 },
     {
         field: 'age',
-        headerName: 'Age',
+        headerName: 'Region',
         type: 'number',
         width: 250,
     },
     {
         field: 'fullName',
-        headerName: 'Full name',
+        headerName: 'Created date',
         description: 'This column has a value getter and is not sortable.',
         sortable: false,
         width: 400,
