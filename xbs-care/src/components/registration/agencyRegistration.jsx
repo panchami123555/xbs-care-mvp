@@ -144,10 +144,10 @@ function RegistrationForm() {
             <CustomLabel text={"Please upload relevant agency documents"} type={'normal'} />
             <Grid container spacing={2}>
               <Grid item xs={12} md={4}>
-                <div className='text-box-style'><BasicTextField label="Name" id="name" style={{ width: '100%' }} validate={validateRequired}/></div>
+                <div className='text-box-style'><BasicTextField label="Name" id="name" className='w-100 custom-textfield' validate={validateRequired}/></div>
               </Grid>
               <Grid item xs={12} md={4}>
-                <div className='text-box-style'><BasicTextField label="Type" id="type" style={{ width: '100%' }} validate={validateRequired}/></div>
+                <div className='text-box-style'><BasicTextField label="Type" id="type" className='w-100 custom-textfield' validate={validateRequired}/></div>
               </Grid>
               <Grid item xs={12} md={4}>
                 <div className='file-upload-style'>

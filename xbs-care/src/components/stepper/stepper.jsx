@@ -8,11 +8,15 @@ import '../assets/xbs-styles/styles.css'
 import StepButton from '@mui/material/StepButton';
 import Esignature from '@mui/icons-material/DriveFileRenameOutlineOutlined';
 import CustomLabel from '../xbs-input-fields/label';
+// import { useRouteMatch, useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const StepperComponent = ({ getStepContent, isAuthorized }) => {
   const [activeStep, setActiveStep] = useState(0);
   const [isCompleted, setIsCompleted] = useState(false);
   const stepperRef = useRef(null);
+  // const history = useHistory();
+  const navigate = useNavigate();
   const steps = [
     { label: 'Agency Details', icon: <PeopleOutlineIcon /> },
     { label: 'Address Details', icon: <GroupAddIcon /> },
@@ -132,6 +136,7 @@ const StepperComponent = ({ getStepContent, isAuthorized }) => {
                   backgroundColor: '#123B94',
                   '&:hover': { backgroundColor: '#0f2c6d' },
                 }}
+                onClick={() => navigate('/dashboard')}
               >
                 Done
               </Button>
