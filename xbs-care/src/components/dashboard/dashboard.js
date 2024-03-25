@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import BasicTable from '../xbs-table/basic-table';
 
 function Card({ title, content, onClick }) {
@@ -57,8 +57,11 @@ const dashboardRows = [
 ];
 
 function Dashboard() {
+    const [isTableVisible, setIsTableVisible] = useState(false);
+
     const handleCardClick = () => {
         console.log('Card clicked');
+        setIsTableVisible(true);
     };
 
     return (
@@ -67,26 +70,31 @@ function Dashboard() {
                 <Card title="Agency Pending" content="614" onClick={handleCardClick} />
                 <Card title="Agency In-Review" content="121" onClick={handleCardClick} />
                 <Card title="Agency Approved" content="528" onClick={handleCardClick} />
-
-                <input
-                    type="text"
-                    placeholder="Search..."
-                    style={{
-                        marginLeft: '20px',
-                        flex: '1',
-                        borderRadius: '16px',
-                        background: 'var(--Neutral-10, #FFF)',
-                        border: 'none',
-                        padding: '10px'
-                    }}
-                />
-
-                <button style={{ marginLeft: '10px', borderRadius: '22px', background: '#08A3E0', color: 'white', padding: '10px 20px' }}>Invite</button>
-                <button style={{ marginLeft: '10px', borderRadius: '22px', background: '#08A3E0', color: 'white', padding: '10px 20px' }}>Filter</button>
+                
+                {isTableVisible && (
+                    <>
+                        <input
+                            type="text"
+                            placeholder="Search..."
+                            style={{
+                                marginLeft: '20px',
+                                flex: '1',
+                                borderRadius: '16px',
+                                background: 'var(--Neutral-10, #FFF)',
+                                border: 'none',
+                                padding: '10px'
+                            }}
+                        />
+                        <button style={{ marginLeft: '10px', borderRadius: '22px', background: '#08A3E0', color: 'white', padding: '10px 20px' }}>Invite</button>
+                        <button style={{ marginLeft: '10px', borderRadius: '22px', background: '#08A3E0', color: 'white', padding: '10px 20px' }}>Filter</button>
+                    </>
+                )}
             </div>
-            <div style={{ display: 'flex', justifyContent: 'space-around' }}>
-                <BasicTable columns={dashboardColumns} rows={dashboardRows} />
-            </div>
+            {isTableVisible && (
+                <div style={{ display: 'flex', justifyContent: 'space-around' }}>
+                    <BasicTable columns={dashboardColumns} rows={dashboardRows} />
+                </div>
+            )}
         </div>
     );
 }
