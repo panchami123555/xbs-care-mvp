@@ -30,7 +30,7 @@ function Navbar() {
                 height: '100%',
                 justifyContent: 'center'
             }}>
-                <li style={{ marginBottom: '5px' }}><Link to="/Home"><AiOutlineHome size="24px" /></Link></li>
+                <li style={{ marginBottom: '5px' }}><Link to="/register"><AiOutlineHome size="24px" /></Link></li>
                 <li style={{ marginBottom: '5px' }}><Link to="/agency-list"><AiOutlineUnorderedList size="24px" /></Link></li>
                 <li style={{ marginBottom: '5px' }}><Link to="/agency-register"><AiOutlineUserAdd size="24px" /></Link></li>
                 <li style={{ marginBottom: '5px' }}><Link to="/settings"><FiSettings size="24px" /></Link></li>

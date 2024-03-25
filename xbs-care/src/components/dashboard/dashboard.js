@@ -1,5 +1,11 @@
 import React, { useState } from 'react';
 import BasicTable from '../xbs-table/basic-table';
+import Modal from '../xbs-modal/basic-modal';
+import { BasicTextField } from '../xbs-input-fields/basic-text-field';
+import { Grid } from '@mui/material';
+import Button from '@mui/material/Button';
+import AddIcon from '@mui/icons-material/Add';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 function Card({ title, content, onClick }) {
     return (
@@ -58,6 +64,10 @@ const dashboardRows = [
 
 function Dashboard() {
     const [isTableVisible, setIsTableVisible] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const handleOpenModal = () => setIsModalOpen(true);
+    const handleCloseModal = () => setIsModalOpen(false);
 
     const handleCardClick = () => {
         console.log('Card clicked');
@@ -70,7 +80,7 @@ function Dashboard() {
                 <Card title="Agency Pending" content="614" onClick={handleCardClick} />
                 <Card title="Agency In-Review" content="121" onClick={handleCardClick} />
                 <Card title="Agency Approved" content="528" onClick={handleCardClick} />
-                
+
                 {isTableVisible && (
                     <>
                         <input
@@ -85,8 +95,68 @@ function Dashboard() {
                                 padding: '10px'
                             }}
                         />
-                        <button style={{ marginLeft: '10px', borderRadius: '22px', background: '#08A3E0', color: 'white', padding: '10px 20px' }}>Invite</button>
-                        <button style={{ marginLeft: '10px', borderRadius: '22px', background: '#08A3E0', color: 'white', padding: '10px 20px' }}>Filter</button>
+                        <Button onClick={handleOpenModal}
+                            style={{
+                                marginLeft: '10px',
+                                borderRadius: '22px',
+                                background: '#08A3E0',
+                                color: 'white',
+                                padding: '10px 20px',
+                                textTransform: 'none'
+                            }}
+                            endIcon={<AddIcon style={{ color: 'white' }} />} >
+                            Invite
+                        </Button>
+                        <Modal isOpen={isModalOpen} title="Send Invite" onClose={handleCloseModal}>
+                            <div style={{ padding: '20px' }}>
+                                <Grid container spacing={2}>
+                                    <Grid item xs={12} md={6}>
+                                        <div className='text-box-style'><BasicTextField label="Agency Name" id="streetAddress" className='w-90 custom-textfield' /></div>
+                                        <div className='text-box-style'><BasicTextField label="Agency Admin Name " id="townCity" className='w-90 custom-textfield' /></div>
+                                        <div className='text-box-style'><BasicTextField label="Email" id="country" className='w-90 custom-textfield' /></div>
+                                        <div className='text-box-style'><BasicTextField label="Contact" id="locality" className='w-90 custom-textfield' /></div>
+                                    </Grid>
+                                    <Grid item xs={12} md={6}>
+                                        <div className='text-box-style'><BasicTextField label="Region" id="postalCode" className='w-90 custom-textfield' /></div>
+                                        <div className='text-box-style'><BasicTextField label="Country" id="country2" className='w-90 custom-textfield' /></div>
+                                    </Grid>
+                                </Grid>
+                                <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '20px' }}>
+                                    <Button
+                                        variant="contained"
+                                        style={{
+                                            marginRight: '10px',
+                                            borderRadius: '16px',
+                                            background: '#194A9F',
+                                            boxShadow: '3px 2px 4px 0px rgba(126, 126, 126, 0.25) inset',
+                                            color: 'white',
+                                            width: '15%',
+                                        }}
+                                    // onClick={() => {}}
+                                    >
+                                        Send
+                                    </Button>
+                                    <Button
+                                        variant="contained"
+                                        onClick={handleCloseModal}
+                                        style={{
+                                            borderRadius: '16px',
+                                            background: '#194A9F',
+                                            boxShadow: '3px 2px 4px 0px rgba(126, 126, 126, 0.25) inset',
+                                            color: 'white',
+                                            width: '15%',
+                                        }}
+                                    >
+                                        Cancel
+                                    </Button>
+                                </div>
+
+                            </div>
+                        </Modal>
+                        <Button style={{ marginLeft: '10px', borderRadius: '22px', background: '#08A3E0', color: 'white', padding: '10px 20px', textTransform: 'none' }}
+                            endIcon={<ExpandMoreIcon style={{ color: 'white' }} />}>
+                            Filter
+                        </Button>
                     </>
                 )}
             </div>

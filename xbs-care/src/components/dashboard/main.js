@@ -7,8 +7,8 @@ import ContentArea from './dashboard.js';
 const Dashboard = () => {
     return (
       <div className="dashboard" style={{ background: '#F3F8FE' }}>
-        <NavBar /> 
         <div className="main-content">
+        <NavBar /> 
           <Header />
           <ContentArea />
         </div>
