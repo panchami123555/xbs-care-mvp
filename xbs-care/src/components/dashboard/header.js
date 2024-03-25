@@ -1,22 +1,22 @@
 import React from 'react';
-// import logo from '../assets/images/carelogo.svg';
 
 function Header() {
     const userName = "Diane Ward";
     const userRole = "Product Manager";
-    // const userProfilePhoto = "../assets/images/carelogo.svg";
+    const userProfilePhoto = "../assets/images/carelogo.svg";
 
     return (
         <div style={{
-            // width: '100%',
-            // height: '70px',
-            // background: '#F3F8FE',
+            width: '100%',
+            height: '70px',
+            background: '#F3F8FE',
             // display: 'flex',
-            // justifyContent: 'space-between',
-            // alignItems: 'center',
-            // padding: '10px'
+            // justifyContent: 'flex-end',
+            alignItems: 'center',
+            padding: '10px',
+            boxSizing: 'border-box'
         }}>
-            <div style={{ textAlign: 'left' }}>
+            <div style={{ textAlign: 'right' }}> 
                 <div>{userName}</div>
                 <div style={{ fontSize: 'smaller' }}>{userRole}</div>
             </div>
@@ -24,6 +24,7 @@ function Header() {
                 height: '50px', 
                 width: '50px', 
                 borderRadius: '50%',
+                marginLeft: '10px'
             }} /> */}
         </div>
     );
