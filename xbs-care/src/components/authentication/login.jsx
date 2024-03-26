@@ -30,7 +30,7 @@ export default function Login() {
                    'password': password };
         try {
           const response = await login(data);
-          navigate('/register');
+          navigate('/dashboard');
         } catch (error) {
           console.log(error.message);
         } finally {

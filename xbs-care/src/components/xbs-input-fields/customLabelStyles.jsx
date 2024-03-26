@@ -9,6 +9,14 @@ const styles = {
     textAlign: 'left',
     marginBottom: '1rem',
   },
+  titleBlack: {
+    fontSize: '20px',
+    fontWeight: 600,
+    lineHeight: 'normal',
+    width: '100%',
+    textAlign: 'left',
+    marginBottom: '1rem',
+  },
   large: {
     color: '#194A9F',
     fontSize: '20px',

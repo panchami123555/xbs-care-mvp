@@ -18,3 +18,26 @@ export const saveAgencyAddress = async (agency) => {
     throw new Error('Failed to get user data');
   }
 };
+
+export const fetchAgencyDetails = async () => {
+  try {
+    const bodyData = {
+      pageNumber: 0,
+      size: 10,
+      filterList: [
+        {
+          field: "name",
+          value: "test",
+          mode: "CONTAINS"
+        }
+      ]
+    };
+
+    const response = await api.post(process.env.REACT_APP_COMMON_SERVICE_PATH + '/xbs-agency/agency/all', bodyData);
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    console.error('Failed to fetch agency details:', error);
+    throw error;
+  }
+};

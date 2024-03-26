@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import BasicTable from '../xbs-table/basic-table';
 import Modal from '../xbs-modal/basic-modal';
 import { BasicTextField } from '../xbs-input-fields/basic-text-field';
@@ -9,8 +9,10 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import agencyPendingIcon from '../assets/icons/Hourglass.svg';
 import agencyReviewIcon from '../assets/icons/file-search-02.svg';
 import agencyApprovedIcon from '../assets/icons/check-circle.svg';
+import CustomLabel from '../xbs-input-fields/label';
+import { fetchAgencyDetails } from '../../services/agencyService';
 
-function Card({ title, content, onClick, icon, iconStyle }) {
+function Card({ title, content, onClick, icon, iconStyle, disableIcon }) {
 
     const defaultIconStyle = {
         display: 'flex',
@@ -31,9 +33,9 @@ function Card({ title, content, onClick, icon, iconStyle }) {
                 cursor: 'pointer'
             }}
             onClick={onClick}>
-            <img src={icon} alt="icon" style={{...defaultIconStyle, ...iconStyle}}/>
+            {!disableIcon && <img src={icon} alt="icon" style={{ ...defaultIconStyle, ...iconStyle }} />}
             <h4 style={{ color: '#797979', paddingTop: 10 }}>{title}</h4>
-            <p style={{fontWeight: 'bold'}}>{content}</p>
+            <p style={{ fontWeight: 'bold' }}>{content}</p>
         </div>
     );
 }
@@ -53,7 +55,7 @@ const dashboardColumns = [
         headerName: 'Created date',
         description: 'This column has a value getter and is not sortable.',
         sortable: false,
-        width: 400,
+        width: 700,
     },
 ];
 
@@ -81,6 +83,7 @@ function Dashboard() {
 
     const handleOpenModal = () => setIsModalOpen(true);
     const handleCloseModal = () => setIsModalOpen(false);
+    const [profile, setProfile] = useState(null);
 
     const handleCardClick = () => {
         console.log('Card clicked');
@@ -99,15 +102,34 @@ function Dashboard() {
 
     const approvedIconStyle = {
         borderRadius: '26px',
-        background: '#70A1E5',
+        background: '#70A1E5', 
     };
+
+    useEffect(() => {
+        const loadAgencyDetails = async () => {
+          try {
+            const userData = await fetchAgencyDetails();
+            setProfile(userData);
+          } catch (error) {
+            console.error('Error fetching agency details:', error);
+          }
+        };
+      
+        loadAgencyDetails();
+      }, []);
+
 
     return (
         <div style={{ paddingLeft: '150px', paddingTop: '50px' }}>
+            {!isTableVisible && (
+                <div style={{ display: 'flex', justifyContent: 'flex-start', paddingLeft: '9%' }}>
+                    <CustomLabel text={"Agency Overview"} type={'titleBlack'} />
+                </div>
+            )}
             <div style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center' }}>
-                <Card title="Agency Pending" content="614" onClick={handleCardClick} icon={agencyPendingIcon} iconStyle={pendingIconStyle} />
-                <Card title="Agency In-Review" content="121" onClick={handleCardClick} icon={agencyReviewIcon} iconStyle={reviewIconStyle} />
-                <Card title="Agency Approved" content="528" onClick={handleCardClick} icon={agencyApprovedIcon} iconStyle={approvedIconStyle} />
+                <Card title="Agency Pending" content="614" onClick={handleCardClick} icon={agencyPendingIcon} iconStyle={pendingIconStyle} disableIcon={isTableVisible} />
+                <Card title="Agency In-Review" content="121" onClick={handleCardClick} icon={agencyReviewIcon} iconStyle={reviewIconStyle} disableIcon={isTableVisible} />
+                <Card title="Agency Approved" content="528" onClick={handleCardClick} icon={agencyApprovedIcon} iconStyle={approvedIconStyle} disableIcon={isTableVisible} />
 
                 {isTableVisible && (
                     <>
