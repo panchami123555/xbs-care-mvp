@@ -1,8 +1,9 @@
 import api from './apiService';
 
+const COMMON_SERVICE_BASE_URL = process.env.REACT_APP_COMMON_SERVICE_BASE_URL;
 export const saveAgency = async (agency) => {
   try {
-    const response = await api.post(`/xbs-agency/agency/save-agency`, agency);
+    const response = await api.post(COMMON_SERVICE_BASE_URL + `/xbs-agency/agency/save-agency`, agency);
     return response.data;
   } catch (error) {
     throw new Error('Failed to get user data');
@@ -12,7 +13,7 @@ export const saveAgency = async (agency) => {
 
 export const saveAgencyAddress = async (agency) => {
   try {
-    const response = await api.post(`/xbs-agency/agency-address`, agency);
+    const response = await api.post(COMMON_SERVICE_BASE_URL + `/xbs-agency/agency-address`, agency);
     return response.data;
   } catch (error) {
     throw new Error('Failed to get user data');
@@ -33,7 +34,7 @@ export const fetchAgencyDetails = async () => {
       ]
     };
 
-    const response = await api.post(process.env.REACT_APP_COMMON_SERVICE_PATH + '/xbs-agency/agency/all', bodyData);
+    const response = await api.post(COMMON_SERVICE_BASE_URL + '/xbs-agency/agency/all', bodyData);
     console.log(response.data);
     return response.data;
   } catch (error) {
