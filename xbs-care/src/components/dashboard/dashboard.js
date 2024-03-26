@@ -10,7 +10,7 @@ import agencyPendingIcon from '../assets/icons/Hourglass.svg';
 import agencyReviewIcon from '../assets/icons/file-search-02.svg';
 import agencyApprovedIcon from '../assets/icons/check-circle.svg';
 import CustomLabel from '../xbs-input-fields/label';
-import { fetchAgencyDetails } from '../../services/agencyService';
+import { fetchAgencyDetails, inviteAgency } from '../../services/agencyService';
 
 function Card({ title, content, onClick, icon, iconStyle, disableIcon }) {
 
@@ -40,18 +40,29 @@ function Card({ title, content, onClick, icon, iconStyle, disableIcon }) {
     );
 }
 
+function formatDate(dateString) {
+    if (!dateString || isNaN(new Date(dateString).getTime())) {
+        return '';
+    }
+    const date = new Date(dateString);
+    const day = date.getDate().toString().padStart(2, '0');
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const year = date.getFullYear();
+    return `${day}-${month}-${year}`;
+}
+
 const dashboardColumns = [
     { field: 'id', headerName: 'ID', width: 100 },
-    { field: 'firstName', headerName: 'Agency name', width: 350 },
-    { field: 'lastName', headerName: 'Admin name', width: 300 },
+    { field: 'agencyName', headerName: 'Agency name', width: 350 },
+    { field: 'adminName', headerName: 'Admin name', width: 300 },
     {
-        field: 'age',
+        field: 'region',
         headerName: 'Region',
         type: 'number',
         width: 250,
     },
     {
-        field: 'fullName',
+        field: 'createdDate',
         headerName: 'Created date',
         description: 'This column has a value getter and is not sortable.',
         sortable: false,
@@ -59,23 +70,6 @@ const dashboardColumns = [
     },
 ];
 
-const dashboardRows = [
-    { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35 },
-    { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 42 },
-    { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 45 },
-    { id: 4, lastName: 'Stark', firstName: 'Arya', age: 16 },
-    { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', age: 45 },
-    { id: 6, lastName: 'Melisandre', firstName: 'Lannister', age: 150 },
-    { id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44 },
-    { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36 },
-    { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
-    { id: 10, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
-    { id: 11, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
-    { id: 12, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
-    { id: 13, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
-    { id: 14, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
-    { id: 15, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
-];
 
 function Dashboard() {
     const [isTableVisible, setIsTableVisible] = useState(false);
@@ -83,7 +77,13 @@ function Dashboard() {
 
     const handleOpenModal = () => setIsModalOpen(true);
     const handleCloseModal = () => setIsModalOpen(false);
-    const [profile, setProfile] = useState(null);
+    const [dashboardRows, setDashboardRows] = useState(null);
+    const [agencyName, setAgencyName] = useState('');
+    const [agencyAdminName, setAgencyAdminName] = useState('');
+    const [email, setEmail] = useState('');
+    const [contact, setContact] = useState('');
+    const [region, setRegion] = useState('');
+    const [country, setCountry] = useState('');
 
     const handleCardClick = () => {
         console.log('Card clicked');
@@ -102,22 +102,57 @@ function Dashboard() {
 
     const approvedIconStyle = {
         borderRadius: '26px',
-        background: '#70A1E5', 
+        background: '#70A1E5',
     };
 
     useEffect(() => {
         const loadAgencyDetails = async () => {
-          try {
-            const userData = await fetchAgencyDetails();
-            setProfile(userData);
-          } catch (error) {
-            console.error('Error fetching agency details:', error);
-          }
+            try {
+                const response = await fetchAgencyDetails();
+                const agencies = response.data.data;
+                const formattedAgencies = agencies.map(agency => ({
+                    id: agency.id,
+                    agencyName: agency.name,
+                    adminName: `${agency.adminFirstName || ''} ${agency.adminLastName || ''}`.trim(),
+                    email: agency.officeEmail,
+                    createdDate: formatDate(agency.dateOfIncorporation),
+                    mobile: agency.mobile,
+                    noOfResources: agency.noOfResources,
+                    status: agency.status,
+                }));
+                setDashboardRows(formattedAgencies);
+            } catch (error) {
+                console.error('Error fetching agency details:', error);
+            }
         };
-      
-        loadAgencyDetails();
-      }, []);
 
+        loadAgencyDetails();
+    }, []);
+
+    const handleSendInvite = async () => {
+        const inviteData = {
+            name: agencyName,
+            adminName: agencyAdminName,
+            officeEmail: email,
+            mobile: contact,
+            // region: region,
+            // country: country,
+        };
+        try {
+            await inviteAgency(inviteData);
+            alert('Invite sent successfully!');
+            handleCloseModal();
+            setAgencyName('');
+            setAgencyAdminName('');
+            setEmail('');
+            setContact('');
+            setRegion('');
+            setCountry('');
+        } catch (error) {
+            console.error('Error sending invite:', error);
+            alert('Failed to send invite. Please try again.');
+        }
+    };
 
     return (
         <div style={{ paddingLeft: '150px', paddingTop: '50px' }}>
@@ -161,14 +196,20 @@ function Dashboard() {
                             <div style={{ padding: '20px' }}>
                                 <Grid container spacing={2}>
                                     <Grid item xs={12} md={6}>
-                                        <div className='text-box-style'><BasicTextField label="Agency Name" id="streetAddress" className='w-90 custom-textfield' /></div>
-                                        <div className='text-box-style'><BasicTextField label="Agency Admin Name " id="townCity" className='w-90 custom-textfield' /></div>
-                                        <div className='text-box-style'><BasicTextField label="Email" id="country" className='w-90 custom-textfield' /></div>
-                                        <div className='text-box-style'><BasicTextField label="Contact" id="locality" className='w-90 custom-textfield' /></div>
+                                        <div className='text-box-style'><BasicTextField label="Agency Name" id="agencyName" className='w-90 custom-textfield' value={agencyName}
+                                            onChange={(e) => setAgencyName(e.target.value)} /></div>
+                                        <div className='text-box-style'><BasicTextField label="Agency Admin Name " id="adminName" className='w-90 custom-textfield' value={agencyAdminName}
+                                            onChange={(e) => setAgencyAdminName(e.target.value)} /></div>
+                                        <div className='text-box-style'><BasicTextField label="Email" id="email" className='w-90 custom-textfield' value={email}
+                                            onChange={(e) => setEmail(e.target.value)} /></div>
+                                        <div className='text-box-style'><BasicTextField label="Contact" id="contact" className='w-90 custom-textfield' value={contact}
+                                            onChange={(e) => setContact(e.target.value)} /></div>
                                     </Grid>
                                     <Grid item xs={12} md={6}>
-                                        <div className='text-box-style'><BasicTextField label="Region" id="postalCode" className='w-90 custom-textfield' /></div>
-                                        <div className='text-box-style'><BasicTextField label="Country" id="country2" className='w-90 custom-textfield' /></div>
+                                        <div className='text-box-style'><BasicTextField label="Region" id="region" className='w-90 custom-textfield' value={region}
+                                            onChange={(e) => setRegion(e.target.value)} /></div>
+                                        <div className='text-box-style'><BasicTextField label="Country" id="country" className='w-90 custom-textfield' value={country}
+                                            onChange={(e) => setCountry(e.target.value)} /></div>
                                     </Grid>
                                 </Grid>
                                 <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '20px' }}>
@@ -182,7 +223,7 @@ function Dashboard() {
                                             color: 'white',
                                             width: '15%',
                                         }}
-                                    // onClick={() => {}}
+                                        onClick={handleSendInvite}
                                     >
                                         Send
                                     </Button>
