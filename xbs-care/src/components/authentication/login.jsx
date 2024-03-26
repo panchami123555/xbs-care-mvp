@@ -5,18 +5,37 @@ import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
+
 import '../assets/xbs-styles/styles.css';
 import BasicButton from "../xbs-buttons/basic-button";
 import { BasicTextField } from '../xbs-input-fields/basic-text-field';
 import CustomLabel from "../xbs-input-fields/label.jsx";
 import { PasswordField } from "../xbs-input-fields/password-text-field.jsx";
+
+import { login } from "../../services/authService.js";
+
 export default function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [isFormSubmitted, setFormSubmitted] = useState(false);
   const [usernameError, setUsernameError] = useState(false);
-  const handleButtonClick = () => {
 
+  const navigate = useNavigate();
+  const handleButtonClick = async (e) => {
+    e.preventDefault();
+    setFormSubmitted(true);
+    const data = { 'grant_type': "password",
+                   'username': username,
+                   'password': password };
+        try {
+          const response = await login(data);
+          navigate('/register');
+        } catch (error) {
+          console.log(error.message);
+        } finally {
+          setFormSubmitted(false);
+        }
     setFormSubmitted(true);
   };
   const handleUsernameChange = (e) => {
@@ -70,11 +89,11 @@ export default function Login() {
                 sx={{ mt: 1 }}
               >
                 <BasicTextField label="Username"  style={{width: '100%',}}
-                validate={true}  size='small' value={username} onChange={(e) => setUsername(e.target.value)} />
+                  size='small' value={username} onChange={(e) => setUsername(e.target.value)} />
                 <PasswordField label="Password" size='small' value={password} onChange={(e) => setPassword(e.target.value)} />
                 <div className="mt-3 mb-3">
 
-                <BasicButton type="submit" label="Sign In" onClick={handleButtonClick} className='rounded-button'  />
+                <BasicButton type="submit" label="Sign In" onClick={handleButtonClick} className='rounded-button' disabled={isFormSubmitted} />
 
                 </div>
                 
