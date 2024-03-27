@@ -36,6 +36,14 @@
 
 .navigate-button {
   background-color: var(--navigate-button-color) !important;
+  margin-right: 1rem !important;
+}
+.navigate-button-panel
+{ 
+  display: flex !important;
+  justify-content: flex-end !important;
+  padding-top: 1rem !important;
+  margin-right: 20px !important;
 }
 
 .logo-label{

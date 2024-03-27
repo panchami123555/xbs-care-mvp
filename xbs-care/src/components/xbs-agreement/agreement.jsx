@@ -3,11 +3,10 @@ import CustomLabel from '../xbs-input-fields/label'
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import '../assets/xbs-styles/styles.css'
+import BackButton from '../xbs-buttons/next-back-button';
 
-function Agreement() {
+function Agreement({onAccept}) {
    return (
-
-      <>
          <Box className="border p-4 mt-3 overflow-y-scroll box-max-height" >
             <CustomLabel text="Terms and Conditions" className="text-bold" variant="h5" color="#194A9F">
             </CustomLabel>
@@ -45,7 +44,7 @@ function Agreement() {
       neque doloribus, cupiditate numquam dignissimos laborum fugiat deleniti? Eum
       quasi quidem quibusdam.
       " variant="body2" />
-            <Button
+            {/* <Button
                 variant="contained"
                 sx={{
                   borderRadius:'10px',
@@ -54,13 +53,9 @@ function Agreement() {
                 }}
               >
                 E-Signature
-              </Button>
+              </Button> */}
+              <BackButton label="E-SIGNATURE" onClick={onAccept}></BackButton>
          </Box>
-      </>
-
-
-
-
    )
 }
 
