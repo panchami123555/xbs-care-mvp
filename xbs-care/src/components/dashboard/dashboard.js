@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import './dashboardStyles.css';
 import BasicTable from '../xbs-table/basic-table';
 import Modal from '../xbs-modal/basic-modal';
 import { BasicTextField } from '../xbs-input-fields/basic-text-field';
 import { Grid } from '@mui/material';
 import Button from '@mui/material/Button';
+import BasicButton from '../xbs-buttons/basic-button';
 import AddIcon from '@mui/icons-material/Add';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import agencyPendingIcon from '../assets/icons/Hourglass.svg';
@@ -55,19 +57,8 @@ const dashboardColumns = [
     { field: 'id', headerName: 'ID', width: 100 },
     { field: 'agencyName', headerName: 'Agency name', width: 350 },
     { field: 'adminName', headerName: 'Admin name', width: 300 },
-    {
-        field: 'region',
-        headerName: 'Region',
-        type: 'number',
-        width: 250,
-    },
-    {
-        field: 'createdDate',
-        headerName: 'Created date',
-        description: 'This column has a value getter and is not sortable.',
-        sortable: false,
-        width: 700,
-    },
+    { field: 'region', headerName: 'Region', type: 'number', width: 250, },
+    { field: 'createdDate', headerName: 'Created date', width: 700, },
 ];
 
 
@@ -155,40 +146,22 @@ function Dashboard() {
     };
 
     return (
-        <div style={{ paddingLeft: '150px', paddingTop: '50px' }}>
+        <div className="dashboard-container">
             {!isTableVisible && (
-                <div style={{ display: 'flex', justifyContent: 'flex-start', paddingLeft: '9%' }}>
+                <div className="agencyOverviewTitle">
                     <CustomLabel text={"Agency Overview"} type={'titleBlack'} />
                 </div>
             )}
-            <div style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center' }}>
+            <div className="cards-container">
                 <Card title="Agency Pending" content="614" onClick={handleCardClick} icon={agencyPendingIcon} iconStyle={pendingIconStyle} disableIcon={isTableVisible} />
                 <Card title="Agency In-Review" content="121" onClick={handleCardClick} icon={agencyReviewIcon} iconStyle={reviewIconStyle} disableIcon={isTableVisible} />
                 <Card title="Agency Approved" content="528" onClick={handleCardClick} icon={agencyApprovedIcon} iconStyle={approvedIconStyle} disableIcon={isTableVisible} />
 
                 {isTableVisible && (
                     <>
-                        <input
-                            type="text"
-                            placeholder="Search..."
-                            style={{
-                                marginLeft: '20px',
-                                flex: '1',
-                                borderRadius: '16px',
-                                background: 'var(--Neutral-10, #FFF)',
-                                border: 'none',
-                                padding: '10px'
-                            }}
-                        />
+                        <input type="text" placeholder="Search..." className="search-input" />
                         <Button onClick={handleOpenModal}
-                            style={{
-                                marginLeft: '10px',
-                                borderRadius: '22px',
-                                background: '#08A3E0',
-                                color: 'white',
-                                padding: '10px 20px',
-                                textTransform: 'none'
-                            }}
+                            className="invite-button"
                             endIcon={<AddIcon style={{ color: 'white' }} />} >
                             Invite
                         </Button>
@@ -215,14 +188,7 @@ function Dashboard() {
                                 <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '20px' }}>
                                     <Button
                                         variant="contained"
-                                        style={{
-                                            marginRight: '10px',
-                                            borderRadius: '16px',
-                                            background: '#194A9F',
-                                            boxShadow: '3px 2px 4px 0px rgba(126, 126, 126, 0.25) inset',
-                                            color: 'white',
-                                            width: '15%',
-                                        }}
+                                        className="modal-action-buttons action-button"
                                         onClick={handleSendInvite}
                                     >
                                         Send
@@ -230,13 +196,7 @@ function Dashboard() {
                                     <Button
                                         variant="contained"
                                         onClick={handleCloseModal}
-                                        style={{
-                                            borderRadius: '16px',
-                                            background: '#194A9F',
-                                            boxShadow: '3px 2px 4px 0px rgba(126, 126, 126, 0.25) inset',
-                                            color: 'white',
-                                            width: '15%',
-                                        }}
+                                        className="modal-action-buttons action-button"
                                     >
                                         Cancel
                                     </Button>
@@ -244,7 +204,7 @@ function Dashboard() {
 
                             </div>
                         </Modal>
-                        <Button style={{ marginLeft: '10px', borderRadius: '22px', background: '#08A3E0', color: 'white', padding: '10px 20px', textTransform: 'none' }}
+                        <Button className="filter-button"
                             endIcon={<ExpandMoreIcon style={{ color: 'white' }} />}>
                             Filter
                         </Button>
@@ -261,3 +221,4 @@ function Dashboard() {
 }
 
 export default Dashboard;
+

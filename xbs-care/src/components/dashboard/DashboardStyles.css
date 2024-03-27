@@ -4,15 +4,15 @@
 }
 
 .agency-overview-title {
-    display: 'flex';
-    justify-content: 'flex-start';
-    padding-left: '9%';
+    display: flex;
+    justify-content: flex-start;
+    padding-left: 9%;
 }
 
 .cards-container {
-    display: 'flex';
-    justify-content: 'space-around';
-    align-items: 'center';
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
 
 .card {
@@ -34,62 +34,62 @@
 }
 
 .default-icon-style {
-    display: 'flex';
-    padding: '10px';
-    align-items: 'center';
-    gap: '10px';
-    justify-content: 'center';
+    display: flex;
+    padding: 10px;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
 }
 
 .pending-icon-style, .review-icon-style, .approved-icon-style {
-    border-radius: '26px';
+    border-radius: 26px;
 }
 
 .pending-icon-style {
-    background: '#D398E7';
+    background: #D398E7;
 }
 
 .review-icon-style {
-    background: '#E89271';
+    background: #E89271;
 }
 
 .approved-icon-style {
-    background: '#70A1E5';
+    background: #70A1E5;
 }
 
 .search-input {
-    margin-left: '20px';
-    flex: '1';
-    border-radius: '16px';
-    background: 'var(--Neutral-10, #FFF)';
-    border: 'none';
-    padding: '10px';
+    margin-left: 20px;
+    flex: 1;
+    border-radius: 16px;
+    background: var(--Neutral-10, #FFF);
+    border: none;
+    padding: 10px;
 }
 
 .invite-button, .filter-button {
-    margin-left: '10px';
-    border-radius: '22px';
-    background: '#08A3E0';
-    color: 'white';
-    padding: '10px 20px';
-    text-transform: 'none';
+    margin-left: 10px;
+    border-radius: 22px;
+    background: #08A3E0;
+    color: white;
+    padding: 10px 20px;
+    text-transform: none;
 }
 
 .modal-content {
-    padding: '20px';
+    padding: 20px;
 }
 
 .modal-action-buttons {
-    display: 'flex';
-    justify-content: 'flex-end';
-    margin-top: '20px';
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
 }
 
 .action-button {
-    margin-right: '10px';
-    border-radius: '16px';
-    background: '#194A9F';
-    color: 'white';
-    width: '15%';
-    box-shadow: '3px 2px 4px 0px rgba(126, 126, 126, 0.25) inset';
+    margin-right: 10px;
+    border-radius: 16px;
+    background: #194A9F;
+    color: white;
+    width: 15%;
+    box-shadow: 3px 2px 4px 0px rgba(126, 126, 126, 0.25) inset;
 }
