@@ -56,6 +56,24 @@ const styles = {
     marginBottom: '1rem',
     paddingTop: '2%',
   },
+  normalHeader: {
+    fontSize: '18px',
+    fontWeight: 600,
+    lineHeight: 'normal',
+    width: '100%',
+    textAlign: 'left',
+    marginBottom: '1rem',
+    paddingTop: '2%',
+  },
+  light: {
+    fontSize: '15px',
+    fontWeight: 500,
+    lineHeight: 'normal',
+    width: '100%',
+    textAlign: 'left',
+    marginBottom: '1rem',
+    paddingTop: '2%',
+  },
   headingMain: {
     fontSize: '32px',
 

@@ -12,7 +12,7 @@ export const TextareaField = ({ label, value, onChange }) => (
     label={label}
      value={value} 
       onChange={onChange}
-    
+    style={{width:'1000px'}}
   />
    
   );

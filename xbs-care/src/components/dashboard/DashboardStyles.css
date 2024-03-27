@@ -93,3 +93,30 @@
     width: 15%;
     box-shadow: 3px 2px 4px 0px rgba(126, 126, 126, 0.25) inset;
 }
+
+.buttonStyleCommon {
+    margin-bottom: 8px;
+    width: 160px; 
+    height: 52px;
+  }
+  
+  .reworkButton {
+    border-radius: 16px;
+    background: #F33;
+    box-shadow: 3px 2px 4px 0px rgba(126, 126, 126, 0.25) inset;
+  }
+  
+  .reworkButton:active {
+    box-shadow: 3px 2px 4px 0px rgba(126, 126, 126, 0.25) inset;
+  }
+  
+  .approveButton {
+    border-radius: 16px;
+    border: 1px solid #34A853;
+    background: #34A853;
+    box-shadow: none;
+  }
+  
+  .approveButton:active {
+    box-shadow: 3px 2px 4px 0px rgba(126, 126, 126, 0.25) inset;
+  }

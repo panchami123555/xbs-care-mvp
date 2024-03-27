@@ -162,7 +162,15 @@ function Dashboard() {
                         <input type="text" placeholder="Search..." className="search-input" />
                         <Button onClick={handleOpenModal}
                             className="invite-button"
+                            sx={{
+                                background: '#08A3E0',
+                                color: 'white',
+                                '&:hover': {
+                                    backgroundColor: 'deepskyblue',
+                                },
+                            }}
                             endIcon={<AddIcon style={{ color: 'white' }} />} >
+
                             Invite
                         </Button>
                         <Modal isOpen={isModalOpen} title="Send Invite" onClose={handleCloseModal}>
@@ -205,6 +213,13 @@ function Dashboard() {
                             </div>
                         </Modal>
                         <Button className="filter-button"
+                            sx={{
+                                background: '#08A3E0',
+                                color: 'white',
+                                '&:hover': {
+                                    backgroundColor: 'deepskyblue',
+                                },
+                            }}
                             endIcon={<ExpandMoreIcon style={{ color: 'white' }} />}>
                             Filter
                         </Button>
