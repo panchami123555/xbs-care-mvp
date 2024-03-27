@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 
 export const BasicTextField = ({
   label,
+  name,
   value,
   size,
   onChange,
@@ -38,8 +39,9 @@ export const BasicTextField = ({
   return (
     <TextField
       label={label}
+      name={name}
       value={value}
-      onChange={handleChange} 
+      onChange={(e) => handleChange(e)} 
       fullWidth={fullwidth}
       size={size}
       required

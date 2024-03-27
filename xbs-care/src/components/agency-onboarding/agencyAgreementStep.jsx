@@ -5,9 +5,23 @@ import { agencyStepContext } from "../../contexts/agencyOnboardingContext";
 import BackButton from "../xbs-buttons/next-back-button";
 
 function AgencyAgreement() {
-  
-  const {activeStep, setActiveStep, scrollToStepper, isCompleted, setIsCompleted,isAgreementAccepted, setIsAgreementAccepted } = useContext(agencyStepContext);
-  console.log("loading AgencyAgreement.." + activeStep + " isAgreementAccepted " + isAgreementAccepted + " isCompleted " + isCompleted);
+  const {
+    activeStep,
+    setActiveStep,
+    scrollToStepper,
+    isCompleted,
+    setIsCompleted,
+    isAgreementAccepted,
+    setIsAgreementAccepted,
+  } = useContext(agencyStepContext);
+  console.log(
+    "loading AgencyAgreement.." +
+      activeStep +
+      " isAgreementAccepted " +
+      isAgreementAccepted +
+      " isCompleted " +
+      isCompleted
+  );
   const handleBack = () => {
     console.log(" AgencyAgreement clicked back in step " + activeStep);
     setActiveStep(activeStep - 1);
@@ -15,32 +29,34 @@ function AgencyAgreement() {
   };
 
   const handleNext = () => {
-      console.log(" AgencyAgreement clicked next in step " + activeStep);
-      setIsCompleted(true);
-      setActiveStep(activeStep + 1);
-      scrollToStepper();
-  }; 
+    console.log(" AgencyAgreement clicked next in step " + activeStep);
+    setIsCompleted(true);
+    setActiveStep(activeStep + 1);
+    scrollToStepper();
+  };
   const onAgreementAccept = () => {
     debugger;
     setIsAgreementAccepted(true);
   };
- 
-    return (
-      <Grid container spacing={2}>
+
+  return (
+    <Grid container spacing={2}>
       <Grid item xs={12} md={12}>
         <Agreement
           onAccept={onAgreementAccept}
-          content={"Please read and accept the terms and conditions to proceed."}
+          content={
+            "Please read and accept the terms and conditions to proceed."
+          }
         />
-        
+
         <Box className="navigate-button-panel">
-        {isAgreementAccepted && (
-        <BackButton label="Continue"  onClick={handleNext}></BackButton>
-        )}
-        <BackButton label="Back" onClick={handleBack} ></BackButton>
+          {isAgreementAccepted && (
+            <BackButton label="Continue" onClick={handleNext}></BackButton>
+          )}
+          <BackButton label="Back" onClick={handleBack}></BackButton>
         </Box>
       </Grid>
-      </Grid>
-      )
+    </Grid>
+  );
 }
 export default AgencyAgreement;

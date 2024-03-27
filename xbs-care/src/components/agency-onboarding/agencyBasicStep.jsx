@@ -11,16 +11,25 @@ import agencyRegImg from "../assets/images/agencyReg.svg";
 import { validateEmail, validateRequired } from "../../utils/validateUtil";
 
 function AgencyBasicDetails() {
-  const { activeStep, setActiveStep, scrollToStepper } =
+  const { activeStep, setActiveStep, scrollToStepper, agencyData, setAgencyData  } =
     useContext(agencyStepContext);
   console.log("loading AgencyBasicDetails.." + activeStep);
 
   const handleNext = () => {
-    console.log(" AgencyBasicDetails clicked next in step " + activeStep);
+    console.log(" AgencyBasicDetails clicked next in step " + activeStep 
+    + " -> "+ agencyData.nameOfAgency
+    + " | "+ agencyData.mobile
+    + " | "+ agencyData.alternativeMobile
+    + " | "+ agencyData.officeEmail
+    );
     setActiveStep(activeStep + 1);
     scrollToStepper();
   };
 
+  const updateAgencyData = (event) => {
+    const {name, value} = event.target;
+    setAgencyData({...agencyData, [name]:value});
+  }
   return (
     <Grid container spacing={2}>
       <Grid item xs={12} md={6}>
@@ -35,35 +44,43 @@ function AgencyBasicDetails() {
             name="nameOfAgency"
             className="text-box-style w-120 custom-textfield"
             validate={validateRequired}
+            value={agencyData.nameOfAgency}
+            onChange={updateAgencyData}
           />
         </div>
         <div className="text-box-style">
           <BasicTextField
             label="Contact Number"
-            id="contactNumber"
-            name="contactNumber"
+            id="mobile"
+            name="mobile"
             className="text-box-style w-90 custom-textfield"
             type="number"
             validate={validateRequired}
+            value={agencyData.mobile}
+            onChange={updateAgencyData}
           />
         </div>
         <div className="text-box-style">
           <BasicTextField
             label="Alternate contact Number"
-            id="alternateContactNumber"
-            name="alternateContactNumber"
+            id="alternativeMobile"
+            name="alternativeMobile"
             className="text-box-style w-90 custom-textfield"
             type="number"
             validate={validateRequired}
+            value={agencyData.alternativeMobile}
+            onChange={updateAgencyData}
           />
         </div>
         <div className="text-box-style">
           <BasicTextField
             label="Email"
-            id="email"
-            name="email"
+            id="officeEmail"
+            name="officeEmail"
             className="text-box-style w-90 custom-textfield"
             validate={validateEmail}
+            value={agencyData.officeEmail}
+            onChange={updateAgencyData}
           />
         </div>
         <Box className="navigate-button-panel">
