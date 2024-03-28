@@ -4,40 +4,21 @@ import BasicTable from '../xbs-table/basic-table';
 import Modal from '../xbs-modal/basic-modal';
 import { BasicTextField } from '../xbs-input-fields/basic-text-field';
 import { Grid } from '@mui/material';
-import Button from '@mui/material/Button';
 import BasicButton from '../xbs-buttons/basic-button';
-import AddIcon from '@mui/icons-material/Add';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import agencyPendingIcon from '../assets/icons/Hourglass.svg';
 import agencyReviewIcon from '../assets/icons/file-search-02.svg';
 import agencyApprovedIcon from '../assets/icons/check-circle.svg';
 import CustomLabel from '../xbs-input-fields/label';
 import { fetchAgencyDetails, inviteAgency } from '../../services/agencyService';
+import {Filter, Add} from "../assets/icons/reusable-icons";
+import Icon from '../xbs-buttons/icon-button';
 
-function Card({ title, content, onClick, icon, iconStyle, disableIcon }) {
-
-    const defaultIconStyle = {
-        display: 'flex',
-        padding: '10px',
-        alignItems: 'center',
-        gap: '10px',
-        justifyContent: 'center',
-    };
-
+function Card({ title, content, onClick, icon, className, disableIcon }) {
     return (
-        <div
-            style={{
-                margin: '10px',
-                padding: '20px',
-                boxShadow: '0px 4px 4px 0px rgba(0, 0, 0, 0.25)',
-                borderRadius: '30px',
-                background: '#FFF',
-                cursor: 'pointer'
-            }}
-            onClick={onClick}>
-            {!disableIcon && <img src={icon} alt="icon" style={{ ...defaultIconStyle, ...iconStyle }} />}
-            <h4 style={{ color: '#797979', paddingTop: 10 }}>{title}</h4>
-            <p style={{ fontWeight: 'bold' }}>{content}</p>
+        <div className={`card ${className || ''}`} onClick={onClick}>
+            {!disableIcon && <img src={icon} alt="icon" className={`default-icon-style ${className || ''}`} />}
+            <h4 className="card-title">{title}</h4>
+            <p className="card-content">{content}</p>
         </div>
     );
 }
@@ -81,25 +62,46 @@ function Dashboard() {
         setIsTableVisible(true);
     };
 
-    const pendingIconStyle = {
-        borderRadius: '26px',
-        background: '#D398E7',
-    };
+    // useEffect(() => {
+    //     const loadAgencyDetails = async () => {
+    //         try {
+    //             const response = await fetchAgencyDetails();
+    //             const agencies = response.data.data;
+    //             const formattedAgencies = agencies.map(agency => ({
+    //                 id: agency.id,
+    //                 agencyName: agency.name,
+    //                 adminName: `${agency.adminFirstName || ''} ${agency.adminLastName || ''}`.trim(),
+    //                 email: agency.officeEmail,
+    //                 createdDate: formatDate(agency.dateOfIncorporation),
+    //                 mobile: agency.mobile,
+    //                 noOfResources: agency.noOfResources,
+    //                 status: agency.status,
+    //             }));
+    //             setDashboardRows(formattedAgencies);
+    //         } catch (error) {
+    //             console.error('Error fetching agency details:', error);
+    //         }
+    //     };
 
-    const reviewIconStyle = {
-        borderRadius: '26px',
-        background: '#E89271',
-    };
-
-    const approvedIconStyle = {
-        borderRadius: '26px',
-        background: '#70A1E5',
-    };
+    //     loadAgencyDetails();
+    // }, []);
 
     useEffect(() => {
         const loadAgencyDetails = async () => {
             try {
-                const response = await fetchAgencyDetails();
+                const dynamicBodyData = {
+                    pageNumber: 0,
+                    size: 10,
+                    filterList: [
+                        {
+                            field: "name",
+                            value: "test",
+                            mode: "CONTAINS"
+                        }
+                    ]
+                };
+
+                const response = await fetchAgencyDetails(dynamicBodyData);
                 const agencies = response.data.data;
                 const formattedAgencies = agencies.map(agency => ({
                     id: agency.id,
@@ -123,9 +125,12 @@ function Dashboard() {
     const handleSendInvite = async () => {
         const inviteData = {
             name: agencyName,
-            adminName: agencyAdminName,
+            adminFirstName: agencyAdminName,
+            adminLastName: agencyAdminName,
             officeEmail: email,
             mobile: contact,
+            cityId: 250,
+            countryId: 106
             // region: region,
             // country: country,
         };
@@ -153,26 +158,18 @@ function Dashboard() {
                 </div>
             )}
             <div className="cards-container">
-                <Card title="Agency Pending" content="614" onClick={handleCardClick} icon={agencyPendingIcon} iconStyle={pendingIconStyle} disableIcon={isTableVisible} />
-                <Card title="Agency In-Review" content="121" onClick={handleCardClick} icon={agencyReviewIcon} iconStyle={reviewIconStyle} disableIcon={isTableVisible} />
-                <Card title="Agency Approved" content="528" onClick={handleCardClick} icon={agencyApprovedIcon} iconStyle={approvedIconStyle} disableIcon={isTableVisible} />
+                <Card title="Agency Pending" content="614" onClick={handleCardClick} icon={agencyPendingIcon} className="pending-icon-style" disableIcon={isTableVisible} />
+                <Card title="Agency In-Review" content="121" onClick={handleCardClick} icon={agencyReviewIcon} className="review-icon-style" disableIcon={isTableVisible} />
+                <Card title="Agency Approved" content="528" onClick={handleCardClick} icon={agencyApprovedIcon} className="approved-icon-style" disableIcon={isTableVisible} />
 
-                {isTableVisible && (
+
+                {isTableVisible && 
                     <>
                         <input type="text" placeholder="Search..." className="search-input" />
-                        <Button onClick={handleOpenModal}
+                        <BasicButton onClick={handleOpenModal} label='Invite'
                             className="invite-button"
-                            sx={{
-                                background: '#08A3E0',
-                                color: 'white',
-                                '&:hover': {
-                                    backgroundColor: 'deepskyblue',
-                                },
-                            }}
-                            endIcon={<AddIcon style={{ color: 'white' }} />} >
-
-                            Invite
-                        </Button>
+                            endIcon={<Add />}>
+                        </BasicButton>
                         <Modal isOpen={isModalOpen} title="Send Invite" onClose={handleCloseModal}>
                             <div style={{ padding: '20px' }}>
                                 <Grid container spacing={2}>
@@ -193,26 +190,24 @@ function Dashboard() {
                                             onChange={(e) => setCountry(e.target.value)} /></div>
                                     </Grid>
                                 </Grid>
-                                <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '20px' }}>
-                                    <Button
+                                <div className='modal-action-buttons'>
+                                    <BasicButton
                                         variant="contained"
                                         className="modal-action-buttons action-button"
+                                        label='Send'
                                         onClick={handleSendInvite}
-                                    >
-                                        Send
-                                    </Button>
-                                    <Button
+                                    />
+                                    <BasicButton
                                         variant="contained"
                                         onClick={handleCloseModal}
                                         className="modal-action-buttons action-button"
-                                    >
-                                        Cancel
-                                    </Button>
+                                        label='Cancel'
+                                    />
                                 </div>
 
                             </div>
                         </Modal>
-                        <Button className="filter-button"
+                        {/* <Button className="filter-button"
                             sx={{
                                 background: '#08A3E0',
                                 color: 'white',
@@ -222,12 +217,17 @@ function Dashboard() {
                             }}
                             endIcon={<ExpandMoreIcon style={{ color: 'white' }} />}>
                             Filter
-                        </Button>
+                        </Button> */}
+                        {/* <Filter /> */}
+                        <Icon
+                            className="filter-button"
+                            icon={<Filter />}>
+                        </Icon>
                     </>
-                )}
+                }
             </div>
             {isTableVisible && (
-                <div style={{ display: 'flex', justifyContent: 'space-around' }}>
+                <div className='table-container'>
                     <BasicTable columns={dashboardColumns} rows={dashboardRows} />
                 </div>
             )}

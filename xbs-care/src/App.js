@@ -22,9 +22,9 @@ function App() {
    <Route path="/forgot" element={<ForgotPassword/>} /> 
    <Route path="/reset" element={<ResetPassword/>} /> 
 
-   {/* <Route path="/register" element={<AgencyOnboarding/>} />  */}
+   <Route path="/register" element={<AgencyOnboarding/>} /> 
 
-   <Route path="/register1" element={<RegistrationForm/>} /> 
+   {/* <Route path="/register1" element={<RegistrationForm/>} />  */}
    <Route path="/test" element={<Test/>} /> 
    <Route path="/dashboard" element={<Dashboard/>} /> 
    </Routes>
