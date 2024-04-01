@@ -10,8 +10,10 @@ import agencyReviewIcon from '../assets/icons/file-search-02.svg';
 import agencyApprovedIcon from '../assets/icons/check-circle.svg';
 import CustomLabel from '../xbs-input-fields/label';
 import { fetchAgencyDetails, inviteAgency } from '../../services/agencyService';
-import {Filter, Add} from "../assets/icons/reusable-icons";
+import { Filter, Add } from "../assets/icons/reusable-icons";
 import Icon from '../xbs-buttons/icon-button';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
 
 function Card({ title, content, onClick, icon, className, disableIcon }) {
     return (
@@ -56,35 +58,31 @@ function Dashboard() {
     const [contact, setContact] = useState('');
     const [region, setRegion] = useState('');
     const [country, setCountry] = useState('');
+    const [filterButton, SetFilterButton] = useState(null);
+    const [subMenuAnchorEl, setSubMenuAnchorEl] = useState(null);
 
     const handleCardClick = () => {
         console.log('Card clicked');
         setIsTableVisible(true);
     };
 
-    // useEffect(() => {
-    //     const loadAgencyDetails = async () => {
-    //         try {
-    //             const response = await fetchAgencyDetails();
-    //             const agencies = response.data.data;
-    //             const formattedAgencies = agencies.map(agency => ({
-    //                 id: agency.id,
-    //                 agencyName: agency.name,
-    //                 adminName: `${agency.adminFirstName || ''} ${agency.adminLastName || ''}`.trim(),
-    //                 email: agency.officeEmail,
-    //                 createdDate: formatDate(agency.dateOfIncorporation),
-    //                 mobile: agency.mobile,
-    //                 noOfResources: agency.noOfResources,
-    //                 status: agency.status,
-    //             }));
-    //             setDashboardRows(formattedAgencies);
-    //         } catch (error) {
-    //             console.error('Error fetching agency details:', error);
-    //         }
-    //     };
-
-    //     loadAgencyDetails();
-    // }, []);
+    const open = Boolean(filterButton);
+    const isSubMenuOpen = Boolean(subMenuAnchorEl);
+    const openFilter = (event) => {
+        SetFilterButton(event.currentTarget);
+    };
+    const filterClicked = () => {
+        SetFilterButton(null);
+        setSubMenuAnchorEl(null); 
+    };
+    const handleOption2Click = (event) => {
+        event.stopPropagation(); 
+        setSubMenuAnchorEl(event.currentTarget);
+      };
+    
+      const handleSubMenuClose = () => {
+        setSubMenuAnchorEl(null);
+      };
 
     useEffect(() => {
         const loadAgencyDetails = async () => {
@@ -163,7 +161,7 @@ function Dashboard() {
                 <Card title="Agency Approved" content="528" onClick={handleCardClick} icon={agencyApprovedIcon} className="approved-icon-style" disableIcon={isTableVisible} />
 
 
-                {isTableVisible && 
+                {isTableVisible &&
                     <>
                         <input type="text" placeholder="Search..." className="search-input" />
                         <BasicButton onClick={handleOpenModal} label='Invite'
@@ -207,22 +205,43 @@ function Dashboard() {
 
                             </div>
                         </Modal>
-                        {/* <Button className="filter-button"
-                            sx={{
-                                background: '#08A3E0',
-                                color: 'white',
-                                '&:hover': {
-                                    backgroundColor: 'deepskyblue',
-                                },
-                            }}
-                            endIcon={<ExpandMoreIcon style={{ color: 'white' }} />}>
-                            Filter
-                        </Button> */}
-                        {/* <Filter /> */}
                         <Icon
                             className="filter-button"
-                            icon={<Filter />}>
+                            icon={<Filter />}
+                            onClick={openFilter}>
                         </Icon>
+                        <Menu
+                            id="filter-menu"
+                            anchorEl={filterButton}
+                            keepMounted
+                            open={open}
+                            onClose={filterClicked}
+                        >
+                            <MenuItem onClick={filterClicked}>Agency Name</MenuItem>
+                            <MenuItem onClick={handleOption2Click}>
+                                Region
+                            </MenuItem>
+                            <Menu
+                                id="sub-menu"
+                                anchorEl={subMenuAnchorEl}
+                                keepMounted
+                                open={isSubMenuOpen}
+                                onClose={handleSubMenuClose}
+                                anchorOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'right',
+                                }}
+                                transformOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'left',
+                                }}
+                            >
+                                {/* Sub-menu items */}
+                                <MenuItem onClick={handleSubMenuClose}>London</MenuItem>
+                                <MenuItem onClick={handleSubMenuClose}>Wales</MenuItem>
+                            </Menu>
+                            <MenuItem onClick={filterClicked}>Created Date</MenuItem>
+                        </Menu>
                     </>
                 }
             </div>

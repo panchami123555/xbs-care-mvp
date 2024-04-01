@@ -21,19 +21,19 @@ export const saveAgencyAddress = async (agency) => {
   }
 };
 
-export const fetchAgencyDetails = async () => {
+export const fetchAgencyDetails = async (bodyData) => {
   try {
-    const bodyData = {
-      pageNumber: 0,
-      size: 10,
-      filterList: [
-        {
-          field: "name",
-          value: "test",
-          mode: "CONTAINS"
-        }
-      ]
-    };
+    // const bodyData = {
+    //   pageNumber: 0,
+    //   size: 10,
+    //   filterList: [
+    //     {
+    //       field: "name",
+    //       value: "test",
+    //       mode: "CONTAINS"
+    //     }
+    //   ]
+    // };
 
     const response = await api.post(COMMON_SERVICE_BASE_URL + '/xbs-agency/agency/all', bodyData);
     console.log(response.data);
@@ -45,7 +45,7 @@ export const fetchAgencyDetails = async () => {
 };
 export const inviteAgency = async (data) => {
   try {
-    const response = await api.post(COMMON_SERVICE_BASE_URL + '/xbs-agency/agency/save-agency', data);
+    const response = await api.post(COMMON_SERVICE_BASE_URL + '/xbs-agency/agency/invite-agency', data);
     console.log(response.data);
     return response.data;
   } catch (error) {
