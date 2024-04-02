@@ -104,9 +104,9 @@
 }
 
 .action-button {
-    margin-right: 10px;
-    border-radius: 16px;
-    background: #194A9F;
+    margin-right: 10px !important;
+    border-radius: 16px !important;
+    background: #194A9F !important;
     color: white;
     width: 15%;
     box-shadow: 3px 2px 4px 0px rgba(126, 126, 126, 0.25) inset;

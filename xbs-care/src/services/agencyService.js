@@ -23,17 +23,6 @@ export const saveAgencyAddress = async (agency) => {
 
 export const fetchAgencyDetails = async (bodyData) => {
   try {
-    // const bodyData = {
-    //   pageNumber: 0,
-    //   size: 10,
-    //   filterList: [
-    //     {
-    //       field: "name",
-    //       value: "test",
-    //       mode: "CONTAINS"
-    //     }
-    //   ]
-    // };
 
     const response = await api.post(COMMON_SERVICE_BASE_URL + '/xbs-agency/agency/all', bodyData);
     console.log(response.data);

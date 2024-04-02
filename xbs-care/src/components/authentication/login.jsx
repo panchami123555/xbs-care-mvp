@@ -93,7 +93,7 @@ export default function Login() {
                 <PasswordField label="Password" size='small' value={password} onChange={(e) => setPassword(e.target.value)} />
                 <div className="mt-3 mb-3">
 
-                <BasicButton type="submit" label="Sign In" onClick={handleButtonClick} className='rounded-button' disabled={isFormSubmitted} />
+                <BasicButton type="submit" label="Sign In" onClick={handleButtonClick} className='rounded-button' disabled={isFormSubmitted} fullWidth = 'true' />
 
                 </div>
                 

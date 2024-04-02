@@ -14,7 +14,7 @@ const theme = createTheme({
     },
   },
 });
-export default function BasicTable({ columns, rows }) {
+export default function BasicTable({ columns, rows, sortingModel, onSortingModelChange }) {
   const modifiedColumns = columns.map((column) => ({
     ...column,
     align: 'center',
@@ -29,6 +29,8 @@ export default function BasicTable({ columns, rows }) {
       <DataGrid
         rows={rows}
         columns={modifiedColumns}
+        sortingModel={sortingModel}
+        onSortModelChange={onSortingModelChange}
         initialState={{
           pagination: {
             paginationModel: { page: 0, pageSize: 10 },

@@ -1,15 +1,22 @@
-import React, { useState, useEffect } from 'react';
-import { Button, Card, CardContent, Grid, Typography } from '@mui/material';
+import React, { useState, useRef } from 'react';
+import { Button, Card, CardContent, Grid } from '@mui/material';
 import CustomLabel from '../xbs-input-fields/label';
 import Agreement from '../xbs-agreement/agreement';
 import { TextareaField } from '../xbs-input-fields/text-area-field';
 import { SelectField } from '../xbs-input-fields/select-text-field';
-import './dashboardStyles.css';
 import Modal from '../xbs-modal/basic-modal';
+import './profileStyles.css';
 
 function Profile() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isRework, setIsRework] = useState(false);
+    const agencyDetailsRef = useRef(null);
+    const locationRef = useRef(null);
+    const leadershipRef = useRef(null);
+    const documentsRef = useRef(null);
+    const esignatureRef = useRef(null);
+    const licenseRef = useRef(null);
+    const approveRef = useRef(null);
 
     const handleReworkModal = () => {
         setIsModalOpen(true);
@@ -21,100 +28,75 @@ function Profile() {
         setIsRework(false);
     };
     const handleCloseModal = () => setIsModalOpen(false);
-    const buttonStyle = {
-        marginBottom: '8px',
-        borderRadius: '20px',
-        background: '#08A3E0',
-        boxShadow: '0px 1px 2px 0px rgba(16, 24, 40, 0.05)',
-        width: '361px',
-        height: '52px',
-    };
-    const cardStyle = {
-        borderRadius: '12px',
-        background: '#FFF',
-        boxShadow: '0px 1px 4px 0px rgba(0, 0, 0, 0.25)',
-        height: '802.901px',
-        overflow: 'auto',
-    };
-    const innerCardStyle = {
-        borderRadius: '40px',
-        background: '#FFF',
-        boxShadow: '0px 1px 4px 0px rgba(0, 0, 0, 0.25)',
-        overflow: 'auto',
-    };
-    const outerCardStyle = {
-        borderRadius: '20px',
-        background: '#F3F8FE',
-        boxShadow: '0px 1px 4px 0px rgba(0, 0, 0, 0.25)',
-        overflow: 'auto',
-    };
-    const approveButtonStyle = {
-        marginBottom: '8px',
-        borderRadius: '16px',
-        border: '1px solid #34A853',
-        background: '#34A853',
-        width: '160px',
-        height: '52px',
-        boxShadow: 'none',
-        '&:active': {
-            boxShadow: '3px 2px 4px 0px rgba(126, 126, 126, 0.25) inset',
-        },
-        paddingLeft: '10px',
-    };
 
-    const reworkButtonStyle = {
-        marginBottom: '8px',
-        borderRadius: '16px',
-        background: '#F33',
-        width: '160px',
-        height: '52px',
-        boxShadow: '3px 2px 4px 0px rgba(126, 126, 126, 0.25) inset',
-        '&:active': {
-            boxShadow: '3px 2px 4px 0px rgba(126, 126, 126, 0.25) inset',
-        },
-        paddingRight: '10px',
-    };
     const selectOptions = [
-        { value: 'option1', label: 'Option 1' },
-        { value: 'option2', label: 'Option 2' },
-        { value: 'option3', label: 'Option 3' },
+        { value: 'CEO', label: 'CEO' },
+        { value: 'Regional Manager', label: 'Regional Manager' },
+        { value: 'Manager', label: 'Regional Manager' },
     ];
 
+    const scrollToAgencyDetails = () => {
+        agencyDetailsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    };
+    const scrollToLocation = () => {
+        locationRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    };
+    const scrollToLeadership = () => {
+        leadershipRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    };
+    const scrollToDocuments = () => {
+        documentsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    };
+    const scrollToEsignature = () => {
+        esignatureRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    };
+    const scrollToLicense = () => {
+        licenseRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    };
+    const scrollToApproveRework = () => {
+        approveRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    };
+
     return (
-        <Card style={cardStyle}>
+        <Card className="cardStyle">
             <CardContent>
                 <Grid container spacing={2}>
                     <Grid item xs={6}>
-                        <CustomLabel text={"Organisation Profile"} type={'large'} />
-                        <CustomLabel text={"Status : Pending"} type={'normalHeader'} />
-                        <div>
-                            <Button variant="contained" style={buttonStyle}>Agency Details</Button>
-                        </div>
-                        <div>
-                            <Button variant="contained" style={buttonStyle}>Location</Button>
-                        </div>
-                        <div>
-                            <Button variant="contained" style={buttonStyle}>Leadership</Button>
-                        </div>
-                        <div>
-
-                            <Button variant="contained" style={buttonStyle}>Documents</Button>
-                        </div>
-                        <div>
-                            <Button variant="contained" style={buttonStyle}>E-Signature</Button>
-                        </div>
-                        <div>
-                            <Button variant="contained" style={buttonStyle}>License & Subscription</Button>
-                        </div>
-                        <div>
-                            <Button variant="contained" style={{ ...buttonStyle, marginBottom: '0' }}>Approve / Rework</Button>
-                        </div>
+                        <card className="buttonSidebarStyle">
+                            <CardContent>
+                                <CustomLabel text={"Organisation Profile"} type={'large'} />
+                                <CustomLabel text={"Status : Pending"} type={'normalHeader'} />
+                                <div>
+                                    <Button variant="contained" className="buttonStyle" onClick={scrollToAgencyDetails}>Agency Details</Button>
+                                </div>
+                                <div>
+                                    <Button variant="contained" className="buttonStyle" onClick={scrollToLocation}>Location</Button>
+                                </div>
+                                <div>
+                                    <Button variant="contained" className="buttonStyle" onClick={scrollToLeadership}>Leadership</Button>
+                                </div>
+                                <div>
+                                    <Button variant="contained" className="buttonStyle" onClick={scrollToDocuments}>Documents</Button>
+                                </div>
+                                <div>
+                                    <Button variant="contained" className="buttonStyle" onClick={scrollToEsignature}>E-Signature</Button>
+                                </div>
+                                <div>
+                                    <Button variant="contained" className="buttonStyle" onClick={scrollToLicense}>License & Subscription</Button>
+                                </div>
+                                <div>
+                                    <Button variant="contained" className="buttonStyle" onClick={scrollToApproveRework}>Approve / Rework</Button>
+                                </div>
+                            </CardContent>
+                        </card>
                     </Grid>
                     <Grid item xs={6}>
-                        <card style={outerCardStyle}>
+                        <card className="outerCardStyle">
                             <CardContent>
-                                <CustomLabel text={"Agency Details"} type={'large'} />
-                                <Card style={innerCardStyle}>
+                                <div ref={agencyDetailsRef}>
+                                    <CustomLabel text={"Agency Details"} type={'large'} />
+                                </div>
+                                <Card className="innerCardStyle">
                                     <CardContent>
 
                                         <Grid container spacing={2}>
@@ -166,8 +148,10 @@ function Profile() {
                                         </Grid>
                                     </CardContent>
                                 </Card>
-                                <CustomLabel text={"Location"} type={'large'} />
-                                <Card style={innerCardStyle}>
+                                <div ref={locationRef}>
+                                    <CustomLabel text={"Location"} type={'large'} />
+                                </div>
+                                <Card className="innerCardStyle">
                                     <CardContent>
                                         <CustomLabel text={"Registered Office Address"} type={'large'} />
                                         <Grid container spacing={2}>
@@ -202,8 +186,10 @@ function Profile() {
                                         </Grid>
                                     </CardContent>
                                 </Card>
+                                <div ref={leadershipRef}>
                                 <CustomLabel text={"Leadership Details"} type={'large'} />
-                                <Card style={innerCardStyle}>
+                                </div>
+                                <Card className="innerCardStyle">
                                     <CardContent>
                                         <CustomLabel text={"Regional Manager"} type={'large'} />
                                         <Grid container spacing={2}>
@@ -250,8 +236,10 @@ function Profile() {
                                             </Grid>
                                         </Grid>
                                     </CardContent></Card>
+                                <div ref={documentsRef}>
                                 <CustomLabel text={"Documents"} type={'large'} />
-                                <Card style={innerCardStyle}>
+                                </div>
+                                <Card className="innerCardStyle">
                                     <CardContent>
                                         <CustomLabel text={"Account Statement"} type={'large'} />
                                         <Grid container spacing={2}>
@@ -274,7 +262,7 @@ function Profile() {
                                             </Grid>
                                         </Grid>
                                     </CardContent></Card>
-                                <Card style={innerCardStyle}>
+                                <Card className="innerCardStyle">
                                     <CardContent>
                                         <CustomLabel text={"Blank Check"} type={'large'} />
                                         <Grid container spacing={2}>
@@ -297,8 +285,11 @@ function Profile() {
                                             </Grid>
                                         </Grid>
                                     </CardContent></Card>
+                                    <div ref={esignatureRef}>
+
                                 <CustomLabel text={"E-Signature"} type={'large'} />
-                                <Card style={innerCardStyle}>
+                                    </div>
+                                <Card className="innerCardStyle">
                                     <CardContent>
                                         <CustomLabel text={"Terms and Conditions"} type={'large'} />
                                         <Grid container spacing={2}>
@@ -308,8 +299,11 @@ function Profile() {
 
                                         </Grid>
                                     </CardContent></Card>
+                                    <div ref={licenseRef}>
+
                                 <CustomLabel text={"License and Subscription"} type={'large'} />
-                                <Card style={innerCardStyle}>
+                                    </div>
+                                <Card className="innerCardStyle">
                                     <CardContent>
                                         <CustomLabel text={"License"} type={'large'} />
                                         <Grid container spacing={2}>
@@ -354,15 +348,18 @@ function Profile() {
                                             </Grid>
                                         </Grid>
                                     </CardContent></Card>
+                                    <div ref={approveRef}>
+
                                 <CustomLabel text={"Approval"} type={'large'} />
-                                <Card style={innerCardStyle}>
+                                    </div>
+                                <Card className="innerCardStyle">
                                     <CardContent>
                                         <Grid container spacing={2}>
                                             <Grid item xs={6}>
                                             </Grid>
                                             <Grid item xs={6} style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                                                <Button variant="contained" style={reworkButtonStyle} onClick={handleReworkModal}>Rework</Button>
-                                                <Button variant="contained" style={approveButtonStyle} onClick={handleApproveModal} >Approve</Button>
+                                                <Button variant="contained" className='reworkButtonStyle' onClick={handleReworkModal}>Rework</Button>
+                                                <Button variant="contained" className='approveButtonStyle' onClick={handleApproveModal} >Approve</Button>
                                             </Grid>
                                         </Grid>
                                     </CardContent></Card>
@@ -386,7 +383,7 @@ function Profile() {
                         {!isRework && (
                             <Button
                                 variant="contained"
-                                style={approveButtonStyle}
+                                className='approveButtonStyle'
                             >
                                 Approve
                             </Button>
@@ -395,7 +392,7 @@ function Profile() {
                         {isRework && (
                             <Button
                                 variant="contained"
-                                style={reworkButtonStyle}
+                                className='reworkButtonStyle'
                             >
                                 Rework
                             </Button>

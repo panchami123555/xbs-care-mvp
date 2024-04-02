@@ -60,6 +60,7 @@ function Dashboard() {
     const [country, setCountry] = useState('');
     const [filterButton, SetFilterButton] = useState(null);
     const [subMenuAnchorEl, setSubMenuAnchorEl] = useState(null);
+    const [sortingModel, setSortingModel] = useState([]);
 
     const handleCardClick = () => {
         console.log('Card clicked');
@@ -73,16 +74,16 @@ function Dashboard() {
     };
     const filterClicked = () => {
         SetFilterButton(null);
-        setSubMenuAnchorEl(null); 
+        setSubMenuAnchorEl(null);
     };
     const handleOption2Click = (event) => {
-        event.stopPropagation(); 
+        event.stopPropagation();
         setSubMenuAnchorEl(event.currentTarget);
-      };
-    
-      const handleSubMenuClose = () => {
+    };
+
+    const handleSubMenuClose = () => {
         setSubMenuAnchorEl(null);
-      };
+    };
 
     useEffect(() => {
         const loadAgencyDetails = async () => {
@@ -96,7 +97,12 @@ function Dashboard() {
                             value: "test",
                             mode: "CONTAINS"
                         }
-                    ]
+                    ],
+                    sortList: sortingModel.map(({ field, sort }) => ({
+                        field,
+                        order: sort.toUpperCase(),
+                        priority: 1,
+                    })),
                 };
 
                 const response = await fetchAgencyDetails(dynamicBodyData);
@@ -118,7 +124,7 @@ function Dashboard() {
         };
 
         loadAgencyDetails();
-    }, []);
+    }, [sortingModel]);
 
     const handleSendInvite = async () => {
         const inviteData = {
@@ -247,7 +253,8 @@ function Dashboard() {
             </div>
             {isTableVisible && (
                 <div className='table-container'>
-                    <BasicTable columns={dashboardColumns} rows={dashboardRows} />
+                    <BasicTable columns={dashboardColumns} rows={dashboardRows} sortingModel={sortingModel}
+                        onSortModelChange={(model) => setSortingModel(model)} />
                 </div>
             )}
         </div>

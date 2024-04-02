@@ -1,0 +1,79 @@
+/* ProfileStyles.css */
+
+.buttonStyle {
+    margin-bottom: 8px !important;
+    border-radius: 20px !important;
+    background: #08A3E0 !important;
+    box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05) !important;
+    width: 361px !important;
+    height: 52px !important;
+    padding-bottom: 10px !important;
+  }
+  
+  .cardStyle {
+    border-radius: 12px;
+    background: #FFF;
+    box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.25);
+    height: 802.901px;
+    /* overflow: auto; */
+  }
+  
+  .innerCardStyle {
+    border-radius: 40px;
+    background: #FFF;
+    box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.25);
+    /* overflow: auto; */
+  }
+  
+  .outerCardStyle {
+    border-radius: 20px;
+    background: #F3F8FE;
+    box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.25);
+    overflow: auto !important; 
+    /* overflow-y: scroll; */
+  }
+  
+  .approveButtonStyle {
+    margin-bottom: 8px !important;
+    border-radius: 16px !important;
+    border: 1px solid #34A853 !important;
+    background: #34A853 !important;
+    width: 160px !important;
+    height: 52px !important;
+    box-shadow: none !important;
+  }
+  
+  .approveButtonStyle:active {
+    box-shadow: 3px 2px 4px 0px rgba(126, 126, 126, 0.25) inset !important;
+  }
+  
+  .reworkButtonStyle {
+    margin-bottom: 8px !important;
+    border-radius: 16px !important;
+    background: #F33 !important;
+    width: 160px !important;
+    height: 52px !important;
+    box-shadow: 3px 2px 4px 0px rgba(126, 126, 126, 0.25) inset !important;
+    margin-right: 10px !important;
+  }
+  
+  .reworkButtonStyle:active {
+    box-shadow: 3px 2px 4px 0px rgba(126, 126, 126, 0.25) inset !important;
+  }
+  
+  .buttonSidebarStyle {
+    position: fixed;
+    width: 60%;
+    padding: 50px;
+    /* justify-content: center; 
+    align-items: center;  */
+  }
+
+  /* .centerAlign {
+    justify-content: center; 
+    align-items: center; 
+  } */
+  
+  .css-bhp9pd-MuiPaper-root-MuiCard-root{
+    overflow: auto !important;
+  }
